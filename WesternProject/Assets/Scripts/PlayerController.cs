@@ -1,20 +1,27 @@
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    CharacterController controller;
-    Vector3 input, moveDirection;
+
+public float moveSpeed = 10;
     public float jumpHeight = 10;
     public float gravity = 9.81f;
-    public float moveSpeed = 10;
-    public float airControl = 10f;
-    public float health = 100;
+    public float airControl = 10;
+    public GameObject weaponPrefab;
+
+    CharacterController controller;
+    Vector3 input;
+    Vector3 moveDirection;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        weaponPrefab.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,48 +29,45 @@ public class PlayerController : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
         input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized;
+
         input *= moveSpeed;
-        if (controller.isGrounded)
+
+        if(controller.isGrounded)
         {
             moveDirection = input;
-            if (Input.GetButton("Jump"))
+
+            //we can jump
+            if(Input.GetButton("Jump"))
             {
                 moveDirection.y = Mathf.Sqrt(2 * jumpHeight * gravity);
             }
-            else
+            else 
             {
                 moveDirection.y = 0.0f;
             }
         }
-        else
+        else 
         {
+            ///we are midair
             input.y = moveDirection.y;
             moveDirection = Vector3.Lerp(moveDirection, input, airControl * Time.deltaTime);
         }
 
         moveDirection.y -= gravity * Time.deltaTime;
+
         controller.Move(moveDirection * Time.deltaTime);
-    }
-    
 
-    /// <summary>
-    /// Returns if this player is dead
-    /// </summary>
-    /// <returns></returns>
-    public bool IsDead() 
-    {
-        return health > 0;
-    }
-
-
-    public void TakeDamage(int damage) 
-    {
-        health -= damage;
-        if (health < 0)
+        //toggles and untoggles gun
+        if(Input.GetKeyDown(KeyCode.Q) && weaponPrefab.activeSelf)
         {
-            health = 0;
-            Debug.Log("We do be dead");
+            weaponPrefab.SetActive(false);
+        }
+        else if(Input.GetKeyDown(KeyCode.Q))
+        {
+            weaponPrefab.SetActive(true);
         }
     }
+    
 }

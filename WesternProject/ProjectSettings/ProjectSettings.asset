@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: a7ecb3c4a9a3a6e4fa823d176b4ef761
+  productGUID: 8b4730fb2ddaf4f22b717f5c3cceec2e
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: WesternProject
+  productName: FinalProject
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -677,14 +677,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: WesternProject
+  metroPackageName: FinalProject
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: WesternProject
+  metroApplicationDescription: FinalProject
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -752,13 +752,13 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 1cfbcbaa-5f01-4c93-a122-660933192b96
+  cloudProjectId: 612f13ee-0ddd-47d6-a852-b51b798a5add
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: WesternProject
-  organizationId: lukastegge
+  projectName: FinalProject
+  organizationId: adescoteaux1
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
