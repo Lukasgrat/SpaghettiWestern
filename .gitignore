@@ -30,6 +30,7 @@ sysinfo.txt
 *.user
 *.userprefs
 *.pidb
+*.vsidx
 .DS_Store
 
 ###
