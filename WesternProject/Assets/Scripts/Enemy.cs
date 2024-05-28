@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     bool isDead = false;
     public float shootingCooldown = 1;
     float shootingTime = 0;
+    public Transform head;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,20 @@ public class Enemy : MonoBehaviour
         var playerPos = player.transform.position;
         playerPos.y = transform.position.y;
         transform.LookAt(playerPos);
-        if (InSights(Physics.RaycastAll(transform.position, transform.forward, 20)) == player)
+        if (head != null) 
+        {
+            head.transform.LookAt(player.transform.position);
+        }
+        RaycastHit[] hits;
+        if (head != null)
+        {
+            hits = Physics.RaycastAll(head.transform.position, head.transform.forward, 20);
+        }
+        else 
+        {
+            hits = Physics.RaycastAll(transform.position, transform.forward, 20);
+        }
+        if (InSights(hits) == player)
         {
             if (shootingTime <= 0) 
             {
@@ -34,11 +48,11 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (shootingTime > shootingCooldown / 4)
+            if (shootingTime > shootingCooldown / 2)
             {
                 shootingTime -= Time.deltaTime;
             }
-            else if(shootingTime < shootingCooldown / 4) 
+            else if(shootingTime < shootingCooldown / 2) 
             {
                 shootingTime += Time.deltaTime / 2;
             }
