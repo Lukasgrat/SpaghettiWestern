@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 500
   recoilDuration: 1
-  recoilAmount: 30
+  recoilAmount: 100
   playerController: {fileID: 0}
 --- !u!114 &5927117212075183363
 MonoBehaviour:
@@ -230,7 +230,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 5364318651769319}
-  revolverShot: {fileID: 8300000, guid: 9fa7970b22d23884f98e4b6a84d857a0, type: 3}
 --- !u!82 &1206315508539669874
 AudioSource:
   m_ObjectHideFlags: 0
@@ -343,7 +342,7 @@ GameObject:
   - component: {fileID: 3778170759812254872}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
