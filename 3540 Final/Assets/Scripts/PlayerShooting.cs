@@ -12,25 +12,31 @@ public class PlayerShooting : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            GameObject gameObject = inSights(Physics.RaycastAll(transform.position, transform.forward, 150));
-            if (gameObject != null && gameObject.TryGetComponent(out Enemy enemy))
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemyObj in enemies)
             {
-                enemy.TakeDamage(10);
+                Enemy enemy = enemyObj.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(10);
+                    enemy.canShoot = true; // Modify the canShoot property of the enemy script
+                }
             }
+
             Camera.iniateRecoil();
-            this.GetComponent<AudioSource>().Play();
+            GetComponent<AudioSource>().Play();
         }
     }
 
-    /// <summary>
-    /// Returns the closest gameobject in the given list of hits, returning null if no collisions are made
-    /// </summary>
-    private GameObject inSights(RaycastHit[] hits) 
+/// <summary>
+/// Returns the closest gameobject in the given list of hits, returning null if no collisions are made
+/// </summary>
+private GameObject inSights(RaycastHit[] hits) 
     {
         GameObject shortestGameObject = null;
         float shortestDistance = float.MaxValue;

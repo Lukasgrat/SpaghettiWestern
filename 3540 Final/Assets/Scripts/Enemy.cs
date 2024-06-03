@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -6,9 +5,11 @@ public class Enemy : MonoBehaviour
     GameObject player;
     public int health = 30;
     bool isDead = false;
+    public bool canShoot = false; // New variable to control shooting
     public float shootingCooldown = 1;
     float shootingTime = 0;
     public Transform head;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,25 +20,29 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (isDead) { return; }
+
         var playerPos = player.transform.position;
         playerPos.y = transform.position.y;
         transform.LookAt(playerPos);
-        if (head != null) 
+
+        if (head != null)
         {
             head.transform.LookAt(player.transform.position);
         }
+
         RaycastHit[] hits;
         if (head != null)
         {
             hits = Physics.RaycastAll(head.transform.position, head.transform.forward, 20);
         }
-        else 
+        else
         {
             hits = Physics.RaycastAll(transform.position, transform.forward, 20);
         }
-        if (InSights(hits) == player)
+
+        if (canShoot && InSights(hits) == player)
         {
-            if (shootingTime <= 0) 
+            if (shootingTime <= 0)
             {
                 ShootPlayer();
             }
@@ -52,7 +57,7 @@ public class Enemy : MonoBehaviour
             {
                 shootingTime -= Time.deltaTime;
             }
-            else if(shootingTime < shootingCooldown / 2) 
+            else if (shootingTime < shootingCooldown / 2)
             {
                 shootingTime += Time.deltaTime / 2;
             }
@@ -63,11 +68,12 @@ public class Enemy : MonoBehaviour
     /// Receives the given amount of damage. If the enemy's health goes below 0, it will fling itself backwards and be considered "dead"
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeDamage(int damage) 
+    public void TakeDamage(int damage)
     {
         if (isDead) { return; }
+
         health -= damage;
-        if (!isDead && health < 0) 
+        if (!isDead && health < 0)
         {
             health = 0;
             this.transform.Rotate(-30f, 0f, 0f);
@@ -97,14 +103,15 @@ public class Enemy : MonoBehaviour
         return shortestGameObject;
     }
 
-    private void ShootPlayer() 
+    private void ShootPlayer()
     {
-
         this.GetComponent<AudioSource>().Play();
+
         if (Random.Range(0, 5) < 3)
         {
             player.GetComponent<PlayerController>().TakeDamage(20);
         }
+
         shootingTime = shootingCooldown;
     }
 }
