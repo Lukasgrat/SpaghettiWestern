@@ -230,7 +230,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 5364318651769319}
-  revolverShot: {fileID: 8300000, guid: 9fa7970b22d23884f98e4b6a84d857a0, type: 3}
+  curAmmo: 0
+  maxAmmo: 6
+  reloadingSFX: {fileID: 8300000, guid: 72c633ee807b38941a669a8719257eec, type: 3}
+  shootingSFX: {fileID: 8300000, guid: 9fa7970b22d23884f98e4b6a84d857a0, type: 3}
+  reloadTime: 3.1
+  fireTime: 0.3
+  curState: 0
+  ammoText: {fileID: 0}
 --- !u!82 &1206315508539669874
 AudioSource:
   m_ObjectHideFlags: 0
