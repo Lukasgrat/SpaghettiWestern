@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\reticlelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\reticlelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\playershooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playershooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\initialsceneloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\initialsceneloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\initialsceneloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\introscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\introscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\PlayerMovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,11 +46,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "ReticleLogic.cs",
+              "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\ReticleLogic.cs",
+              "RelativeDocumentMoniker": "Assets\\ReticleLogic.cs",
+              "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\ReticleLogic.cs",
+              "RelativeToolTip": "Assets\\ReticleLogic.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T18:57:18.94Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerShooting.cs",
+              "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerShooting.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerShooting.cs",
+              "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerShooting.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PlayerShooting.cs",
+              "ViewState": "AQIAAG8AAAAAAAAAAAAzwJIAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-08T20:04:30.742Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "MouseLook.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\MouseLook.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MouseLook.cs",
@@ -50,25 +82,23 @@
               "RelativeToolTip": "Assets\\Scripts\\MouseLook.cs",
               "ViewState": "AQIAACcAAAAAAAAAAAAYwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T00:54:23.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-04T00:54:23.869Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
               "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAYwFMAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T00:53:56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-04T00:53:56Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "InitialSceneLoader.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\InitialSceneLoader.cs",
               "RelativeDocumentMoniker": "Assets\\InitialSceneLoader.cs",
@@ -76,12 +106,11 @@
               "RelativeToolTip": "Assets\\InitialSceneLoader.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T22:23:08.602Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T22:23:08.602Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "SceneManagerScript.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\SceneManagerScript.cs",
               "RelativeDocumentMoniker": "Assets\\SceneManagerScript.cs",
@@ -93,31 +122,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "IntroScene.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\IntroScene.cs",
               "RelativeDocumentMoniker": "Assets\\IntroScene.cs",
               "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\IntroScene.cs",
               "RelativeToolTip": "Assets\\IntroScene.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAfAAAA",
+              "ViewState": "AQIAACUAAAAAAAAAAAAQwDkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-25T22:02:31.361Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Enemy.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\Enemy.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy.cs",
               "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\Enemy.cs",
               "RelativeToolTip": "Assets\\Scripts\\Enemy.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAYwEoAAABCAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwBcAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T22:10:44.416Z"
+              "WhenOpened": "2024-05-28T22:10:44.416Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "PlayerMovement.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\PlayerMovement.cs",
               "RelativeDocumentMoniker": "Assets\\PlayerMovement.cs",

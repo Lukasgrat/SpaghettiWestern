@@ -9,7 +9,6 @@ public class MouseLook : MonoBehaviour
     public float recoilDuration = 1;
     public int recoilAmount = 30;
     private float currentRecoilFrame = 0;
-    public PlayerController playerController;
 
     float pitch = 0;
     void Start()

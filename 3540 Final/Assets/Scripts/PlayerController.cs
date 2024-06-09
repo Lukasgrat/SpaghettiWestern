@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 10;
     public float airControl = 10f;
     public float health = 100;
+    public Slider healthSlider;
 
     [Header("Death Related Atttributes")]
     public float deathTimer = 2f;
@@ -35,7 +37,6 @@ public class PlayerController : MonoBehaviour
     {
         if (shootingLogic.curState == Gunplay.Dead) 
         {
-            Debug.Log(currentDeathTimer);
             if (currentDeathTimer < deathTimer) 
             {
                 currentDeathTimer += Time.deltaTime;
@@ -89,6 +90,8 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage) 
     {
         health -= damage;
+        health = Mathf.Clamp(health, 0, 100);
+        healthSlider.value = health;
         if (health < 0)
         {
             Debug.Log("They do be dead");

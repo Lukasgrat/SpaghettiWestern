@@ -23,7 +23,7 @@ public class PlayerShooting : MonoBehaviour
     public AudioClip shootingSFX;
     AudioSource audiosource;
     public float reloadTime = 3.1f;
-    public float fireTime = .35f;
+    public float fireTime = .36f;
     float cooldownTime = 0;
     public Gunplay curState;
     public TMP_Text ammoText;
@@ -47,6 +47,21 @@ public class PlayerShooting : MonoBehaviour
     {
         InputHandler();
         StateHandler();
+        SightHandler();
+    }
+
+    void SightHandler() 
+    {
+        GameObject sightedObject = inSights(Physics.RaycastAll(transform.position, transform.forward, 600));
+        if (sightedObject != null && sightedObject.TryGetComponent(out EnemyImproved target))
+        {
+            target.HealthDisplay();
+        }
+        else 
+        {
+            GameObject.FindGameObjectWithTag("EnemyDisplayName").GetComponent<CanvasGroup>().alpha = 0;
+            GameObject.FindGameObjectWithTag("EnemyHealthSlider").GetComponent<CanvasGroup>().alpha = 0;
+        }
     }
 
     private void InputHandler() 
@@ -59,22 +74,24 @@ public class PlayerShooting : MonoBehaviour
         
         if (Input.GetButtonDown("Fire1") && curAmmo > 0)
         {
+            gunAnimator.gameObject.transform.localEulerAngles = new Vector3(0, -5, 0);
             gunAnimator.SetInteger("animState", 1);
             curState = Gunplay.Firing;
             StartCoroutine(shootingEffects());
         }
         if (Input.GetKeyDown(KeyCode.R) || (curAmmo == 0 && Input.GetButtonDown("Fire1")))
         {
+            gunAnimator.gameObject.transform.localEulerAngles = new Vector3(0, -5, 0);
             curState = Gunplay.Reloading;
             audiosource.clip = reloadingSFX;
             audiosource.Play();
-            curState = Gunplay.Reloading;
             gunAnimator.SetInteger("animState", 2);
         }
     }
 
     private void StateHandler() 
     {
+        if (curState == Gunplay.Readied) return;
         float timer = 0;
         if (curState == Gunplay.Reloading)
         {
@@ -96,9 +113,9 @@ public class PlayerShooting : MonoBehaviour
                 updateAmmoText();
             }
             cooldownTime = 0;
-
             curState = Gunplay.Readied;
             gunAnimator.SetInteger("animState", 0);
+            gunAnimator.gameObject.transform.localPosition = Vector3.zero;
         }
     }
 
@@ -138,10 +155,20 @@ public class PlayerShooting : MonoBehaviour
                 enemy.TakeDamage(10);
                 enemy.canShoot = true; // Modify the canShoot property of the enemy script
             }
+
+            EnemyImproved EI = enemyObj.GetComponent<EnemyImproved>();
+            if (EI != null)
+            {
+                EI.OnPlayerFire();
+            }
+        }
+        if (inSights(Physics.RaycastAll(transform.position, transform.forward, 600)).TryGetComponent(out EnemyImproved target)) 
+        {
+            target.TakeDamage(10);
         }
         curAmmo -= 1;
         updateAmmoText();
-
+        FindObjectOfType<ReticleLogic>().InitiateReticle(fireTime);
         Camera.iniateRecoil();
         audiosource.clip = shootingSFX;
         audiosource.Play();

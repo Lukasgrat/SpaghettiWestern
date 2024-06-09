@@ -143,7 +143,6 @@ MonoBehaviour:
   mouseSensitivity: 500
   recoilDuration: 1
   recoilAmount: 30
-  playerController: {fileID: 0}
 --- !u!114 &5927117212075183363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +161,11 @@ MonoBehaviour:
   reloadingSFX: {fileID: 8300000, guid: 72c633ee807b38941a669a8719257eec, type: 3}
   shootingSFX: {fileID: 8300000, guid: 9fa7970b22d23884f98e4b6a84d857a0, type: 3}
   reloadTime: 3.1
-  fireTime: 0.3
+  fireTime: 0.36
   curState: 0
   ammoText: {fileID: 0}
+  reloadClip: {fileID: 7400000, guid: f015578aaafe07948b718edb9ba77748, type: 2}
+  shootingClip: {fileID: 7400000, guid: 24d9c24fa03358640a7b37877972bc12, type: 2}
 --- !u!82 &1206315508539669874
 AudioSource:
   m_ObjectHideFlags: 0
@@ -425,15 +426,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5335788888605278872, guid: e4c025769c8a95a44bee3678018b8b05, type: 3}
       propertyPath: m_LocalScale.x
-      value: -3.634
+      value: -3.6
       objectReference: {fileID: 0}
     - target: {fileID: 5335788888605278872, guid: e4c025769c8a95a44bee3678018b8b05, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.634
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 5335788888605278872, guid: e4c025769c8a95a44bee3678018b8b05, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.6340003
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 5335788888605278872, guid: e4c025769c8a95a44bee3678018b8b05, type: 3}
       propertyPath: m_LocalPosition.x
