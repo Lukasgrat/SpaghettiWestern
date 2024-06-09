@@ -15,21 +15,24 @@ public enum Gunplay
 
 public class PlayerShooting : MonoBehaviour
 {
-    public MouseLook Camera;
+    MouseLook Camera;
+    public Animator gunAnimator;
     public int curAmmo;
     public int maxAmmo = 6;
     public AudioClip reloadingSFX;
     public AudioClip shootingSFX;
     AudioSource audiosource;
     public float reloadTime = 3.1f;
-    public float fireTime = .3f;
+    public float fireTime = .35f;
     float cooldownTime = 0;
     public Gunplay curState;
-    public TextMeshProUGUI ammoText;
+    public TMP_Text ammoText;
 
     // Start is called before the first frame update
     void Start()
     {
+        Camera = GetComponent<MouseLook>();
+
         curAmmo = maxAmmo;
         curState = Gunplay.Readied;
         audiosource = GetComponent<AudioSource>();  
@@ -56,23 +59,9 @@ public class PlayerShooting : MonoBehaviour
         
         if (Input.GetButtonDown("Fire1") && curAmmo > 0)
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject enemyObj in enemies)
-            {
-                Enemy enemy = enemyObj.GetComponent<Enemy>();
-                if (enemy != null)
-                {
-                    enemy.TakeDamage(10);
-                    enemy.canShoot = true; // Modify the canShoot property of the enemy script
-                }
-            }
-            curAmmo -= 1;
-            updateAmmoText();
-
-            Camera.iniateRecoil();
-            audiosource.clip = shootingSFX;
-            audiosource.Play();
+            gunAnimator.SetInteger("animState", 1);
             curState = Gunplay.Firing;
+            StartCoroutine(shootingEffects());
         }
         if (Input.GetKeyDown(KeyCode.R) || (curAmmo == 0 && Input.GetButtonDown("Fire1")))
         {
@@ -80,6 +69,7 @@ public class PlayerShooting : MonoBehaviour
             audiosource.clip = reloadingSFX;
             audiosource.Play();
             curState = Gunplay.Reloading;
+            gunAnimator.SetInteger("animState", 2);
         }
     }
 
@@ -92,7 +82,7 @@ public class PlayerShooting : MonoBehaviour
         }
         else if (curState == Gunplay.Firing) 
         {
-            timer = fireTime; 
+            timer = fireTime;
         }
         if (cooldownTime < timer)
         {
@@ -108,6 +98,7 @@ public class PlayerShooting : MonoBehaviour
             cooldownTime = 0;
 
             curState = Gunplay.Readied;
+            gunAnimator.SetInteger("animState", 0);
         }
     }
 
@@ -115,7 +106,7 @@ public class PlayerShooting : MonoBehaviour
 /// <summary>
 /// Returns the closest gameobject in the given list of hits, returning null if no collisions are made
 /// </summary>
-private GameObject inSights(RaycastHit[] hits) 
+    private GameObject inSights(RaycastHit[] hits) 
     {
         GameObject shortestGameObject = null;
         float shortestDistance = float.MaxValue;
@@ -134,4 +125,28 @@ private GameObject inSights(RaycastHit[] hits)
     {
         this.ammoText.text = curAmmo + " / " + maxAmmo;
     }
+
+    private IEnumerator shootingEffects()
+    {
+        yield return new WaitForSeconds(.05f);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemyObj in enemies)
+        {
+            Enemy enemy = enemyObj.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(10);
+                enemy.canShoot = true; // Modify the canShoot property of the enemy script
+            }
+        }
+        curAmmo -= 1;
+        updateAmmoText();
+
+        Camera.iniateRecoil();
+        audiosource.clip = shootingSFX;
+        audiosource.Play();
+
+    }
 }
+
+
