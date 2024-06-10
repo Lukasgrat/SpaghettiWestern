@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             health = 0;
             Debug.Log("We do be dead");
+            FindObjectOfType<LevelManager>().LevelLost();
         }
     }
 }

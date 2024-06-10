@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,8 +19,9 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             GameObject gameObject = inSights(Physics.RaycastAll(transform.position, transform.forward, 150));
-            if (gameObject != null && gameObject.TryGetComponent(out Enemy enemy))
+            if (gameObject != null && gameObject.TryGetComponent(out EnemyImproved enemy))
             {
+                Debug.Log("hit");
                 enemy.TakeDamage(10);
             }
             Camera.iniateRecoil();

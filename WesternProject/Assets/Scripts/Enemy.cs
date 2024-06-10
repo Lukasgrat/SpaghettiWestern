@@ -9,10 +9,14 @@ public class Enemy : MonoBehaviour
     public float shootingCooldown = 1;
     float shootingTime = 0;
     public Transform head;
+    Animator playerAnimator;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,6 +26,7 @@ public class Enemy : MonoBehaviour
         var playerPos = player.transform.position;
         playerPos.y = transform.position.y;
         transform.LookAt(playerPos);
+        playerAnimator.SetInteger("animState", 5);
         if (head != null) 
         {
             head.transform.LookAt(player.transform.position);
@@ -70,9 +75,10 @@ public class Enemy : MonoBehaviour
         if (!isDead && health < 0) 
         {
             health = 0;
-            this.transform.Rotate(-30f, 0f, 0f);
-            this.GetComponent<Rigidbody>().AddForce((transform.forward + Vector3.down) * -500);
+            //this.transform.Rotate(-30f, 0f, 0f);
+            //this.GetComponent<Rigidbody>().AddForce((transform.forward + Vector3.down) * -500);
             isDead = true;
+            playerAnimator.SetInteger("animState", 2);
         }
     }
 
@@ -96,7 +102,7 @@ public class Enemy : MonoBehaviour
 
     private void ShootPlayer() 
     {
-
+        playerAnimator.SetInteger("animState", 5);
         this.GetComponent<AudioSource>().Play();
         if (Random.Range(0, 5) < 3)
         {
