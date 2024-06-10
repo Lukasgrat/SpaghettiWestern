@@ -98,6 +98,8 @@ public class EnemyImproved : MonoBehaviour
         curhealth -= damage;
         if (!isDead && curhealth <= 0)
         {
+            GameObject.FindGameObjectWithTag("EnemyDisplayName").GetComponent<CanvasGroup>().alpha = 0;
+            GameObject.FindGameObjectWithTag("EnemyHealthSlider").GetComponent<CanvasGroup>().alpha = 0;
             curhealth = 0;
             this.transform.Rotate(-30f, 0f, 0f);
             Rigidbody rb = this.GetComponent<Rigidbody>();
