@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         shootingLogic = FindObjectOfType<PlayerShooting>();
-        if (FindAnyObjectByType<IntroScene>() != null) 
+        if (FindAnyObjectByType<IntroScene>() != null)
         {
             FindAnyObjectByType<IntroScene>().gameObject.SetActive(false);
         }
@@ -35,13 +35,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shootingLogic.curState == Gunplay.Dead) 
+        if (shootingLogic.curState == Gunplay.Dead)
         {
-            if (currentDeathTimer < deathTimer) 
+            if (currentDeathTimer < deathTimer)
             {
                 currentDeathTimer += Time.deltaTime;
             }
-            else 
+            else
             {
                 PlayerPrefs.SetInt("Bypass", 1);
                 Debug.Log("Loading scene");
@@ -74,20 +74,20 @@ public class PlayerController : MonoBehaviour
         moveDirection.y -= gravity * Time.deltaTime;
         controller.Move(moveDirection * Time.deltaTime);
     }
-    
+
 
     /// <summary>
     /// Returns if this player is dead
     /// </summary>
     /// <returns></returns>
-    public bool IsDead() 
+    public bool IsDead()
     {
         return health > 0;
     }
 
 
 
-    public void TakeDamage(int damage) 
+    public void TakeDamage(int damage)
     {
         health -= damage;
         health = Mathf.Clamp(health, 0, 100);
@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("They do be dead");
             health = 0;
             shootingLogic.curState = Gunplay.Dead;
-            
+
         }
     }
 }

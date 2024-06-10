@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -5,44 +6,47 @@ public class Enemy : MonoBehaviour
     GameObject player;
     public int health = 30;
     bool isDead = false;
-    public bool canShoot = false; // New variable to control shooting
+    public bool canShoot = false;
     public float shootingCooldown = 1;
     float shootingTime = 0;
     public Transform head;
+    Animator playerAnimator;
 
+    
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (isDead) { return; }
-
         var playerPos = player.transform.position;
         playerPos.y = transform.position.y;
         transform.LookAt(playerPos);
-
-        if (head != null)
+        playerAnimator.SetInteger("animState", 5);
+        if (head != null) 
         {
             head.transform.LookAt(player.transform.position);
+            transform.LookAt(player.transform.position);
+            Vector3 curRotation = transform.localEulerAngles;
+            transform.localEulerAngles = new Vector3(0, curRotation.y, 0 );
         }
-
         RaycastHit[] hits;
         if (head != null)
         {
             hits = Physics.RaycastAll(head.transform.position, head.transform.forward, 20);
         }
-        else
+        else 
         {
             hits = Physics.RaycastAll(transform.position, transform.forward, 20);
         }
-
         if (canShoot && InSights(hits) == player)
         {
-            if (shootingTime <= 0)
+            if (shootingTime <= 0) 
             {
                 ShootPlayer();
             }
@@ -57,7 +61,7 @@ public class Enemy : MonoBehaviour
             {
                 shootingTime -= Time.deltaTime;
             }
-            else if (shootingTime < shootingCooldown / 2)
+            else if(shootingTime < shootingCooldown / 2) 
             {
                 shootingTime += Time.deltaTime / 2;
             }
@@ -68,20 +72,17 @@ public class Enemy : MonoBehaviour
     /// Receives the given amount of damage. If the enemy's health goes below 0, it will fling itself backwards and be considered "dead"
     /// </summary>
     /// <param name="damage"></param>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage) 
     {
         if (isDead) { return; }
-
         health -= damage;
-        if (!isDead && health < 0)
+        if (!isDead && health < 0) 
         {
             health = 0;
-            this.transform.Rotate(-30f, 0f, 0f);
-            Rigidbody rb = this.GetComponent<Rigidbody>();
-            rb.constraints -= RigidbodyConstraints.FreezeRotationX;
-            rb.constraints -= RigidbodyConstraints.FreezeRotationZ;
-            rb.AddForce((transform.forward + Vector3.down) * -500);
+            //this.transform.Rotate(-30f, 0f, 0f);
+            //this.GetComponent<Rigidbody>().AddForce((transform.forward + Vector3.down) * -500);
             isDead = true;
+            playerAnimator.SetInteger("animState", 2);
         }
     }
 
@@ -103,15 +104,14 @@ public class Enemy : MonoBehaviour
         return shortestGameObject;
     }
 
-    private void ShootPlayer()
+    private void ShootPlayer() 
     {
+        playerAnimator.SetInteger("animState", 5);
         this.GetComponent<AudioSource>().Play();
-
         if (Random.Range(0, 5) < 3)
         {
             player.GetComponent<PlayerController>().TakeDamage(20);
         }
-
         shootingTime = shootingCooldown;
     }
 }

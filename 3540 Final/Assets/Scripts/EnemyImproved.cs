@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class EnemyImproved : MonoBehaviour
 {
 
-    enum EnemyState 
+    public enum FSMStates 
     {
         idle,
+        patrol,
         shooting,
+        dead,
     }
 
 
@@ -23,36 +25,95 @@ public class EnemyImproved : MonoBehaviour
     public float hearingRadius = 10;
     public Transform head;
     public string displayName;
-    EnemyState enemyState;
+    public FSMStates currentState;
+    public GameObject[] wanderPoints;
+
+    Animator playerAnimator;
+    Vector3 nextDestination;
+    int currentDestinationIndex = 0;
+    float distanceToPlayer;
 
 
     // Start is called before the first frame update
     void Start()
     {
         curhealth = maxHealth;
-        enemyState = EnemyState.idle;
+        //currentState = FSMStates.idle;
         player = GameObject.FindGameObjectWithTag("Player");
+        if (wanderPoints.Length > 1) 
+        {
+            currentState = FSMStates.patrol;
+            FindNextPoint();
+        }
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) <= seeingRadius) 
+
+        distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        switch(currentState)
         {
-            enemyState = EnemyState.shooting;
+            case FSMStates.patrol:
+                UpdatePatrolState();
+                break;
+            case FSMStates.shooting:
+                UpdateShootState();
+                break;
+            case FSMStates.dead:
+                UpdateDeadState();
+                break;
         }
-        if (enemyState == EnemyState.idle) return;
-        if (isDead) { return; }
         
+        if (curhealth <= 0)
+        {
+            currentState = FSMStates.dead;
+        }
+        
+    }
+
+    void UpdatePatrolState()
+    {
+
+        playerAnimator.SetInteger("animState", 1);
+
+        if(Vector3.Distance(transform.position, nextDestination) < 3)
+        {
+            FindNextPoint();
+        }
+        else if (distanceToPlayer <= seeingRadius) 
+        {
+            currentState = FSMStates.shooting;
+        }
+
+        FaceTarget(nextDestination);
+
+        //transform.position = Vector3.MoveTowards(transform.position, nextDestination, 1.5f * Time.deltaTime);
+
+    }
+
+    void UpdateShootState()
+    {
+
         var playerPos = player.transform.position;
         playerPos.y = transform.position.y;
         transform.LookAt(playerPos);
+        transform.Rotate(0, 30, 0);
 
         if (head != null)
         {
             head.transform.LookAt(player.transform.position);
         }
 
+        playerAnimator.SetInteger("animState", 5);
+
+        if ((Vector3.Distance(player.transform.position, transform.position) > seeingRadius
+            && !InSights(Physics.RaycastAll(head.transform.position, head.transform.forward, hearingRadius)).CompareTag("Player"))) 
+        {
+            currentState = FSMStates.patrol;
+        }
         RaycastHit[] hits;
         if (head != null)
         {
@@ -87,6 +148,33 @@ public class EnemyImproved : MonoBehaviour
         }
     }
 
+    void UpdateDeadState()
+    {
+        isDead = true;
+        if (playerAnimator.GetInteger("animState") != 2)
+        {
+            playerAnimator.SetInteger("animState", 2);
+        }
+    }
+
+    void FindNextPoint()
+    {
+        nextDestination = wanderPoints[currentDestinationIndex].transform.position;
+
+        currentDestinationIndex = (currentDestinationIndex + 1) % wanderPoints.Length;
+    }
+
+    void FaceTarget(Vector3 target)
+    {
+        Vector3 directionToTarget = (target - transform.position).normalized;
+
+        directionToTarget.y = 0;
+
+        Quaternion lookRotation = Quaternion.LookRotation(directionToTarget);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 10 * Time.deltaTime);
+    }
+
     /// <summary>
     /// Receives the given amount of damage. If the enemy's health goes below 0, it will fling itself backwards and be considered "dead"
     /// </summary>
@@ -98,15 +186,13 @@ public class EnemyImproved : MonoBehaviour
         curhealth -= damage;
         if (!isDead && curhealth <= 0)
         {
-            GameObject.FindGameObjectWithTag("EnemyDisplayName").GetComponent<CanvasGroup>().alpha = 0;
-            GameObject.FindGameObjectWithTag("EnemyHealthSlider").GetComponent<CanvasGroup>().alpha = 0;
             curhealth = 0;
-            this.transform.Rotate(-30f, 0f, 0f);
-            Rigidbody rb = this.GetComponent<Rigidbody>();
-            rb.constraints -= RigidbodyConstraints.FreezeRotationX;
-            rb.constraints -= RigidbodyConstraints.FreezeRotationZ;
-            rb.AddForce((transform.forward + Vector3.down) * -500);
-            isDead = true;
+            //this.transform.Rotate(-30f, 0f, 0f);
+            //Rigidbody rb = this.GetComponent<Rigidbody>();
+            //rb.constraints -= RigidbodyConstraints.FreezeRotationX;
+            //rb.constraints -= RigidbodyConstraints.FreezeRotationZ;
+            //rb.AddForce((transform.forward + Vector3.down) * -500);
+            UpdateDeadState();
         }
     }
 
@@ -142,11 +228,11 @@ public class EnemyImproved : MonoBehaviour
 
     public void OnPlayerFire() 
     {
-        if (enemyState == EnemyState.shooting) return;
+        if (currentState == FSMStates.shooting) return;
 
         if (Vector3.Distance(player.transform.position, transform.position) <= hearingRadius) 
         {
-            enemyState = EnemyState.shooting;
+            currentState = FSMStates.shooting;
         }
     }
 

@@ -35,8 +35,8 @@ public class PlayerShooting : MonoBehaviour
 
         curAmmo = maxAmmo;
         curState = Gunplay.Readied;
-        audiosource = GetComponent<AudioSource>();  
-        if (ammoText == null) 
+        audiosource = GetComponent<AudioSource>();
+        if (ammoText == null)
         {
             throw new System.Exception("Ammo counter is not linked up");
         }
@@ -50,28 +50,28 @@ public class PlayerShooting : MonoBehaviour
         SightHandler();
     }
 
-    void SightHandler() 
+    void SightHandler()
     {
         GameObject sightedObject = inSights(Physics.RaycastAll(transform.position, transform.forward, 600));
         if (sightedObject != null && sightedObject.TryGetComponent(out EnemyImproved target))
         {
             target.HealthDisplay();
         }
-        else 
+        else
         {
             GameObject.FindGameObjectWithTag("EnemyDisplayName").GetComponent<CanvasGroup>().alpha = 0;
             GameObject.FindGameObjectWithTag("EnemyHealthSlider").GetComponent<CanvasGroup>().alpha = 0;
         }
     }
 
-    private void InputHandler() 
+    private void InputHandler()
     {
-        if (curState != Gunplay.Readied) 
+        if (curState != Gunplay.Readied)
         {
             return;
         }
-        
-        
+
+
         if (Input.GetButtonDown("Fire1") && curAmmo > 0)
         {
             gunAnimator.gameObject.transform.localEulerAngles = new Vector3(0, -5, 0);
@@ -89,7 +89,7 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    private void StateHandler() 
+    private void StateHandler()
     {
         if (curState == Gunplay.Readied) return;
         float timer = 0;
@@ -97,7 +97,7 @@ public class PlayerShooting : MonoBehaviour
         {
             timer = reloadTime;
         }
-        else if (curState == Gunplay.Firing) 
+        else if (curState == Gunplay.Firing)
         {
             timer = fireTime;
         }
@@ -105,9 +105,9 @@ public class PlayerShooting : MonoBehaviour
         {
             cooldownTime += Time.deltaTime;
         }
-        else 
+        else
         {
-            if (curState == Gunplay.Reloading) 
+            if (curState == Gunplay.Reloading)
             {
                 this.curAmmo = this.maxAmmo;
                 updateAmmoText();
@@ -120,16 +120,16 @@ public class PlayerShooting : MonoBehaviour
     }
 
 
-/// <summary>
-/// Returns the closest gameobject in the given list of hits, returning null if no collisions are made
-/// </summary>
-    private GameObject inSights(RaycastHit[] hits) 
+    /// <summary>
+    /// Returns the closest gameobject in the given list of hits, returning null if no collisions are made
+    /// </summary>
+    private GameObject inSights(RaycastHit[] hits)
     {
         GameObject shortestGameObject = null;
         float shortestDistance = float.MaxValue;
-        foreach (RaycastHit hit in hits) 
+        foreach (RaycastHit hit in hits)
         {
-            if (hit.distance < shortestDistance) 
+            if (hit.distance < shortestDistance)
             {
                 shortestDistance = hit.distance;
                 shortestGameObject = hit.collider.gameObject;
@@ -138,7 +138,7 @@ public class PlayerShooting : MonoBehaviour
         return shortestGameObject;
     }
 
-    public void updateAmmoText() 
+    public void updateAmmoText()
     {
         this.ammoText.text = curAmmo + " / " + maxAmmo;
     }
@@ -162,7 +162,7 @@ public class PlayerShooting : MonoBehaviour
                 EI.OnPlayerFire();
             }
         }
-        if (inSights(Physics.RaycastAll(transform.position, transform.forward, 600)).TryGetComponent(out EnemyImproved target)) 
+        if (inSights(Physics.RaycastAll(transform.position, transform.forward, 600)).TryGetComponent(out EnemyImproved target))
         {
             target.TakeDamage(10);
         }

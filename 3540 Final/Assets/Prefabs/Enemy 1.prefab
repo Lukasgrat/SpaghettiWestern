@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
-  canShoot: 0
+  canShoot: 1
   shootingCooldown: 1
   seeingRadius: 15
   hearingRadius: 50
