@@ -56,6 +56,9 @@ public class EnemyImproved : MonoBehaviour
 
         switch(currentState)
         {
+            case FSMStates.idle:
+                UpdateIdleState();
+                break;
             case FSMStates.patrol:
                 UpdatePatrolState();
                 break;
@@ -71,8 +74,19 @@ public class EnemyImproved : MonoBehaviour
         {
             currentState = FSMStates.dead;
         }
-        
+
     }
+
+    void UpdateIdleState()
+    {
+        playerAnimator.SetInteger("animState", 0);
+        if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position,
+            player.transform.position - head.transform.position)).CompareTag("Player"))
+        {
+            currentState = FSMStates.shooting;
+        }
+    }
+
 
     void UpdatePatrolState()
     {
@@ -83,7 +97,7 @@ public class EnemyImproved : MonoBehaviour
         {
             FindNextPoint();
         }
-        else if (distanceToPlayer <= seeingRadius) 
+        else if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player")) 
         {
             currentState = FSMStates.shooting;
         }
@@ -97,6 +111,8 @@ public class EnemyImproved : MonoBehaviour
     void UpdateShootState()
     {
 
+
+        playerAnimator.SetInteger("animState", 5);
         var playerPos = player.transform.position;
         playerPos.y = transform.position.y;
         transform.LookAt(playerPos);
@@ -107,12 +123,17 @@ public class EnemyImproved : MonoBehaviour
             head.transform.LookAt(player.transform.position);
         }
 
-        playerAnimator.SetInteger("animState", 5);
-
         if ((Vector3.Distance(player.transform.position, transform.position) > seeingRadius
             && !InSights(Physics.RaycastAll(head.transform.position, head.transform.forward, hearingRadius)).CompareTag("Player"))) 
         {
-            currentState = FSMStates.patrol;
+            if (this.wanderPoints.Length > 1)
+            {
+                currentState = FSMStates.patrol;
+            }
+            else 
+            {
+                currentState = FSMStates.idle;
+            }
         }
         RaycastHit[] hits;
         if (head != null)
@@ -154,6 +175,7 @@ public class EnemyImproved : MonoBehaviour
         if (playerAnimator.GetInteger("animState") != 2)
         {
             playerAnimator.SetInteger("animState", 2);
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 
@@ -205,7 +227,7 @@ public class EnemyImproved : MonoBehaviour
         float shortestDistance = float.MaxValue;
         foreach (RaycastHit hit in hits)
         {
-            if (hit.distance < shortestDistance)
+            if (hit.distance < shortestDistance && hit.collider.gameObject.tag != this.tag)
             {
                 shortestDistance = hit.distance;
                 shortestGameObject = hit.collider.gameObject;
@@ -228,7 +250,7 @@ public class EnemyImproved : MonoBehaviour
 
     public void OnPlayerFire() 
     {
-        if (currentState == FSMStates.shooting) return;
+        if (currentState == FSMStates.shooting || isDead) return;
 
         if (Vector3.Distance(player.transform.position, transform.position) <= hearingRadius) 
         {
