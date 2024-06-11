@@ -12,9 +12,11 @@ public class LevelSwitcher : MonoBehaviour
         {
             // Unload current level
             SceneManager.UnloadSceneAsync(level1Name);
+            SceneManager.UnloadSceneAsync("World");
+            SceneManager.UnloadSceneAsync("IntroScene");
 
             // Load next level
-            SceneManager.LoadScene(level2Name, LoadSceneMode.Additive);
+            SceneManager.LoadScene(level2Name);
         }
     }
 }
