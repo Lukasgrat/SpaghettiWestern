@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\MessengerScript.cs" />
     <Compile Include="Assets\Scripts\ReticleLogic.cs" />
     <Compile Include="Assets\Scripts\InitialSceneLoader.cs" />
+    <Compile Include="Assets\GameBarrier.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\PlayerPokerScript.cs" />
     <Compile Include="Assets\Scripts\PlayerShooting.cs" />
