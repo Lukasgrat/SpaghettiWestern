@@ -38,7 +38,7 @@ public class EnemyImproved : MonoBehaviour
     void Start()
     {
         curhealth = maxHealth;
-        //currentState = FSMStates.idle;
+        currentState = FSMStates.idle;
         player = GameObject.FindGameObjectWithTag("Player");
         if (wanderPoints.Length > 1) 
         {
@@ -81,7 +81,7 @@ public class EnemyImproved : MonoBehaviour
     {
         playerAnimator.SetInteger("animState", 0);
         if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position,
-            player.transform.position - head.transform.position)).CompareTag("Player"))
+            player.transform.position - head.transform.position)).CompareTag("Player") && canShoot)
         {
             currentState = FSMStates.shooting;
         }
@@ -97,7 +97,7 @@ public class EnemyImproved : MonoBehaviour
         {
             FindNextPoint();
         }
-        else if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player")) 
+        else if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player") && canShoot) 
         {
             currentState = FSMStates.shooting;
         }

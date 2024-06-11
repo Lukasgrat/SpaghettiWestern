@@ -155,27 +155,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa9f548dbe74b56a2ee48629f0f161, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa9f548dbe74b56a2ee48629f0f161, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa9f548dbe74b56a2ee48629f0f161, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa9f548dbe74b56a2ee48629f0f161, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.958313
+      value: 14.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa9f548dbe74b56a2ee48629f0f161, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.36
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa9f548dbe74b56a2ee48629f0f161, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 136.61606
+      value: -16.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dfa9f548dbe74b56a2ee48629f0f161, type: 3}
       propertyPath: m_LocalRotation.w
@@ -904,8 +904,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70064bd13427f4541877b7539b3e8540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 35
-  canShoot: 1
+  maxHealth: 30
+  canShoot: 0
   shootingCooldown: 1
   seeingRadius: 15
   hearingRadius: 100
