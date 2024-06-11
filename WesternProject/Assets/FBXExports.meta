@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream:WesternProject/Assets/FBXExports.meta
 fileFormatVersion: 2
 guid: 4a1cff837b93140548e01ed2be49d8e5
 folderAsset: yes
@@ -7,13 +6,3 @@ DefaultImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-=======
-fileFormatVersion: 2
-guid: 4baf9d3a89175c143b9d1bb3e62526e7
-folderAsset: yes
-DefaultImporter:
-  externalObjects: {}
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
->>>>>>> Stashed changes:3540 Final/Library/PackageCache/com.unity.editorcoroutines@1.0.0/Editor.meta
