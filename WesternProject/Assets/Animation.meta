@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:WesternProject/Assets/Animation.meta
 fileFormatVersion: 2
 guid: 8c99b9cce48d1cf4787665ef7c802846
 folderAsset: yes
@@ -6,3 +7,13 @@ DefaultImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: a36d8b72880a8004f96ac54ce4598ff9
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> Stashed changes:3540 Final/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35.meta

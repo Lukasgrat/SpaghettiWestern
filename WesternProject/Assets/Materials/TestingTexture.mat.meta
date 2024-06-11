@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:WesternProject/Assets/Materials/TestingTexture.mat.meta
 fileFormatVersion: 2
 guid: 50b67b60b5bd73e4bb19c2ebb5eb1249
 NativeFormatImporter:
@@ -6,3 +7,12 @@ NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: 478a2357cc57436488a56e564b08d223
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> Stashed changes:3540 Final/Library/PackageCache/com.unity.editorcoroutines@1.0.0/Editor/Unity.EditorCoroutines.Editor.asmdef.meta

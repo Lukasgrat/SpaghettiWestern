@@ -5,7 +5,7 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     Transform playerBody;
-    public float mouseSensitivity = 100;
+    public float mouseSensitivity = 50;
     public float recoilDuration = 1;
     public int recoilAmount = 30;
     private float currentRecoilFrame = 0;
