@@ -24,9 +24,13 @@ public class PlayerShooting : MonoBehaviour
     AudioSource audiosource;
     public float reloadTime = 3.1f;
     public float fireTime = .36f;
+    public float coolDownDynamiteTime = 5f;
+    public float throwingForce = 100f;
+    float cooldownDynamiteTimer = 0f;
     float cooldownTime = 0;
     public Gunplay curState;
     public TMP_Text ammoText;
+    public GameObject dynamite;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +52,24 @@ public class PlayerShooting : MonoBehaviour
         InputHandler();
         StateHandler();
         SightHandler();
+        ThrowingHandler();
+    }
+
+    void ThrowingHandler() 
+    {
+        if (cooldownDynamiteTimer > 0)
+        {
+            cooldownDynamiteTimer -= Time.deltaTime;
+        }
+        else if(Input.GetKeyUp(KeyCode.G))
+        {
+            GameObject newDynamite = Instantiate(dynamite, this.transform.position, this.transform.rotation, GameObject.FindGameObjectWithTag("Particles").transform);
+            newDynamite.GetComponent<Rigidbody>().AddForce(
+                Quaternion.AngleAxis(0, Vector3.left) * transform.forward * throwingForce, ForceMode.Force);
+            cooldownDynamiteTimer = coolDownDynamiteTime;
+            newDynamite.GetComponent<Rigidbody>().AddRelativeTorque(Vector3.right * 20);
+        }
+
     }
 
     void SightHandler()
@@ -88,6 +110,7 @@ public class PlayerShooting : MonoBehaviour
             gunAnimator.SetInteger("animState", 2);
         }
     }
+
 
     private void StateHandler()
     {

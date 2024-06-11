@@ -331,6 +331,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 282.19632, y: 100, z: 1}
   m_Center: {x: 108.90187, y: 0, z: 2.714003e-13}
+--- !u!1 &14919536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14919537}
+  m_Layer: 0
+  m_Name: Explosions
+  m_TagString: Particles
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &14919537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14919536}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 84.08601, y: 27.77, z: 78.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &34355777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5264,6 +5295,10 @@ PrefabInstance:
       propertyPath: gunAnimator
       value: 
       objectReference: {fileID: 945885599}
+    - target: {fileID: 5927117212075183363, guid: ddc6725b536514849b9b91d87a5e3348, type: 3}
+      propertyPath: coolDownDynamiteTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8781664913722929405, guid: ddc6725b536514849b9b91d87a5e3348, type: 3}
       propertyPath: m_LocalPosition.x
       value: 77.8
@@ -16677,3 +16712,4 @@ SceneRoots:
   - {fileID: 390990153}
   - {fileID: 1929513023}
   - {fileID: 1812664887}
+  - {fileID: 14919537}

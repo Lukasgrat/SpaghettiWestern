@@ -195,7 +195,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 75653454778240684}
-  - {fileID: 4726149882284922580}
   m_Father: {fileID: 8781664913722929405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7376710172267699368
@@ -285,15 +284,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6af0800296dc65498e35823151376d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunAnimator: {fileID: 0}
+  gunAnimator: {fileID: 2604986726677295819}
   curAmmo: 0
   maxAmmo: 6
   reloadingSFX: {fileID: 8300000, guid: 72c633ee807b38941a669a8719257eec, type: 3}
   shootingSFX: {fileID: 8300000, guid: 9fa7970b22d23884f98e4b6a84d857a0, type: 3}
   reloadTime: 3.1
   fireTime: 0.36
+  coolDownDynamiteTime: 10
+  throwingForce: 900
   curState: 0
   ammoText: {fileID: 0}
+  dynamite: {fileID: 2205879656789641371, guid: 847d5b7f8f3cc134c9dfef0b50ed2a17, type: 3}
 --- !u!82 &1206315508539669874
 AudioSource:
   m_ObjectHideFlags: 0
@@ -415,12 +417,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6592174681413683101}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.32, z: 0.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.043619405, z: 0, w: 0.9990483}
+  m_LocalPosition: {x: 0.12759876, y: 0.22055554, z: -0.04655619}
+  m_LocalScale: {x: -0.2777778, y: 0.2777778, z: 0.2777778}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1736069384822102590}
+  m_Father: {fileID: 4933373179662733879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &2540309151742055980
 Light:
@@ -612,6 +614,8 @@ MonoBehaviour:
   moveSpeed: 10
   airControl: 10
   health: 100
+  healthSlider: {fileID: 0}
+  deathTimer: 2
 --- !u!143 &3778170759812254872
 CharacterController:
   m_ObjectHideFlags: 0
@@ -704,9 +708,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5335788888605278872, guid: e4c025769c8a95a44bee3678018b8b05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4726149882284922580}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4c025769c8a95a44bee3678018b8b05, type: 3}
+--- !u!95 &2604986726677295819 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3052489323028079204, guid: e4c025769c8a95a44bee3678018b8b05, type: 3}
+  m_PrefabInstance: {fileID: 1043246858735440047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4933373179662733879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5335788888605278872, guid: e4c025769c8a95a44bee3678018b8b05, type: 3}

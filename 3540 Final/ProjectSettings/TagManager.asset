@@ -8,6 +8,7 @@ TagManager:
   - Reticle
   - EnemyHealthSlider
   - EnemyDisplayName
+  - Particles
   layers:
   - Default
   - TransparentFX
