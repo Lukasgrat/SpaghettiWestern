@@ -62,6 +62,7 @@
     <Compile Include="Assets\Scripts\EnemyImproved.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\MessengerScript.cs" />
+    <Compile Include="Assets\LevelSwitcher.cs" />
     <Compile Include="Assets\Scripts\ReticleLogic.cs" />
     <Compile Include="Assets\Scripts\InitialSceneLoader.cs" />
     <Compile Include="Assets\GameBarrier.cs" />
