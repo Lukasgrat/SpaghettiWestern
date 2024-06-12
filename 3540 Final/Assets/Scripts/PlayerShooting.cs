@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public enum Gunplay
@@ -31,6 +32,7 @@ public class PlayerShooting : MonoBehaviour
     public Gunplay curState;
     public TMP_Text ammoText;
     public GameObject dynamite;
+    public Slider dynamiteCooldown;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +71,7 @@ public class PlayerShooting : MonoBehaviour
             cooldownDynamiteTimer = coolDownDynamiteTime;
             newDynamite.GetComponent<Rigidbody>().AddRelativeTorque(Vector3.right * 20);
         }
+        dynamiteCooldown.value = cooldownDynamiteTimer / coolDownDynamiteTime;
 
     }
 
@@ -152,6 +155,10 @@ public class PlayerShooting : MonoBehaviour
         float shortestDistance = float.MaxValue;
         foreach (RaycastHit hit in hits)
         {
+            if (hit.collider.gameObject.TryGetComponent(out EnemyHead head)) 
+            {
+                continue;
+            }
             if (hit.distance < shortestDistance)
             {
                 shortestDistance = hit.distance;
@@ -185,10 +192,21 @@ public class PlayerShooting : MonoBehaviour
                 EI.OnPlayerFire();
             }
         }
-        GameObject sightedObject = inSights(Physics.RaycastAll(transform.position, transform.forward, 600));
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, 600);
+        GameObject sightedObject = inSights(hits);
         if (sightedObject.TryGetComponent(out EnemyImproved target))
         {
             target.TakeDamage(10);
+            foreach (RaycastHit hit in hits)
+            {
+                bool hasHeadShot = false;
+                if (hit.collider.gameObject.TryGetComponent(out EnemyHead enemyHead)
+                    && enemyHead.enemy == target && !hasHeadShot) 
+                {
+                    hasHeadShot = true;
+                    target.TakeDamage(15);
+                }
+            }
         }
         else if (sightedObject.TryGetComponent(out DynamiteLogic DL)) 
         {
