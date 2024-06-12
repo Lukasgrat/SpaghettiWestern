@@ -19,21 +19,26 @@ public class DynamiteLogic : MonoBehaviour
     {
         if (timer > delay)
         {
-            RaycastHit[] hits = Physics.SphereCastAll(this.transform.position, explosionRadius, transform.forward, .1f);
-            foreach (RaycastHit hit in hits) 
-            {
-                if(hit.collider.gameObject.TryGetComponent(out EnemyImproved enemy)) 
-                {
-                    enemy.TakeDamage(20);
-                }
-            }
-            ParticleSystem explosion = Instantiate(explosionPrefab, this.transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Particles").transform);
-            Destroy(explosion.gameObject, 1);
-            Destroy(gameObject);
+            Explode();
         }
         else 
         {
             timer += Time.deltaTime;
         }
+    }
+
+    public void Explode() 
+    {
+        RaycastHit[] hits = Physics.SphereCastAll(this.transform.position, explosionRadius, transform.forward, .1f);
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.gameObject.TryGetComponent(out EnemyImproved enemy))
+            {
+                enemy.TakeDamage(20);
+            }
+        }
+        ParticleSystem explosion = Instantiate(explosionPrefab, this.transform.position, Quaternion.identity, GameObject.FindGameObjectWithTag("Particles").transform);
+        Destroy(explosion.gameObject, 1);
+        Destroy(gameObject);
     }
 }

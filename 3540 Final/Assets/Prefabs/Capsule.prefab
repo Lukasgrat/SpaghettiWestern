@@ -291,7 +291,7 @@ MonoBehaviour:
   shootingSFX: {fileID: 8300000, guid: 9fa7970b22d23884f98e4b6a84d857a0, type: 3}
   reloadTime: 3.1
   fireTime: 0.36
-  coolDownDynamiteTime: 10
+  coolDownDynamiteTime: 5
   throwingForce: 900
   curState: 0
   ammoText: {fileID: 0}

@@ -61,9 +61,9 @@ public class PlayerShooting : MonoBehaviour
         {
             cooldownDynamiteTimer -= Time.deltaTime;
         }
-        else if(Input.GetKeyUp(KeyCode.G))
+        else if(Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt))
         {
-            GameObject newDynamite = Instantiate(dynamite, this.transform.position, this.transform.rotation, GameObject.FindGameObjectWithTag("Particles").transform);
+            GameObject newDynamite = Instantiate(dynamite, this.transform.position + transform.forward.normalized * .25f, this.transform.rotation, GameObject.FindGameObjectWithTag("Particles").transform);
             newDynamite.GetComponent<Rigidbody>().AddForce(
                 Quaternion.AngleAxis(0, Vector3.left) * transform.forward * throwingForce, ForceMode.Force);
             cooldownDynamiteTimer = coolDownDynamiteTime;
@@ -185,9 +185,14 @@ public class PlayerShooting : MonoBehaviour
                 EI.OnPlayerFire();
             }
         }
-        if (inSights(Physics.RaycastAll(transform.position, transform.forward, 600)).TryGetComponent(out EnemyImproved target))
+        GameObject sightedObject = inSights(Physics.RaycastAll(transform.position, transform.forward, 600));
+        if (sightedObject.TryGetComponent(out EnemyImproved target))
         {
             target.TakeDamage(10);
+        }
+        else if (sightedObject.TryGetComponent(out DynamiteLogic DL)) 
+        {
+            DL.Explode();
         }
         curAmmo -= 1;
         updateAmmoText();

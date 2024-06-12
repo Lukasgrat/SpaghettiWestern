@@ -130,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7347710732016511030, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
       propertyPath: seeingRadius
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7347710732016511030, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
       propertyPath: wanderPoints.Array.data[0]
