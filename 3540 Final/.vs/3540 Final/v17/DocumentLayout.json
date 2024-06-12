@@ -3,11 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\enemyimproved.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemyimproved.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\playershooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\scripts\\playershooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playershooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,7 +11,15 @@
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\dynamitelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\enemyimproved.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemyimproved.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\enemyhead.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\enemyhead.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\dynamitelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\dynamitelogic.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -23,7 +27,7 @@
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\destroyobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\destroyobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\destroyobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -50,11 +54,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
+              "Title": "EnemyHead.cs",
+              "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\EnemyHead.cs",
+              "RelativeDocumentMoniker": "Assets\\EnemyHead.cs",
+              "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\EnemyHead.cs",
+              "RelativeToolTip": "Assets\\EnemyHead.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T03:42:13.499Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "DestroyObject.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\DestroyObject.cs",
               "RelativeDocumentMoniker": "Assets\\DestroyObject.cs",
@@ -62,12 +78,11 @@
               "RelativeToolTip": "Assets\\DestroyObject.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T21:04:18.861Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T21:04:18.861Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DynamiteLogic.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\DynamiteLogic.cs",
               "RelativeDocumentMoniker": "Assets\\DynamiteLogic.cs",
@@ -75,12 +90,11 @@
               "RelativeToolTip": "Assets\\DynamiteLogic.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAYwCoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-11T21:00:15.12Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-11T21:00:15.12Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "GameBarrier.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\GameBarrier.cs",
               "RelativeDocumentMoniker": "Assets\\GameBarrier.cs",
@@ -92,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LevelSwitcher.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\LevelSwitcher.cs",
               "RelativeDocumentMoniker": "Assets\\LevelSwitcher.cs",
@@ -104,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "SceneManagerScript.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\SceneManagerScript.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SceneManagerScript.cs",
@@ -116,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "InitialSceneLoader.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\InitialSceneLoader.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\InitialSceneLoader.cs",
@@ -128,33 +142,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
               "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerController.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
-              "ViewState": "AQIAAE8AAAAAAAAAAAAAwFkAAAAUAAAA",
+              "ViewState": "AQIAADwAAAAAAAAAAAAYwDkAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T16:30:18.216Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T16:30:18.216Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "EnemyImproved.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\EnemyImproved.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\EnemyImproved.cs",
               "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\EnemyImproved.cs",
               "RelativeToolTip": "Assets\\Scripts\\EnemyImproved.cs",
-              "ViewState": "AQIAAOsAAAAAAAAAAAAswH0AAABbAAAA",
+              "ViewState": "AQIAAGoAAAAAAAAAAAAAwH0AAABbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T16:12:21.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T16:12:21.609Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Enemy.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\Enemy.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy.cs",
@@ -162,18 +174,17 @@
               "RelativeToolTip": "Assets\\Scripts\\Enemy.cs",
               "ViewState": "AQIAAEcAAAAAAAAAAAAYwFQAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T16:07:37.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T16:07:37.529Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "PlayerShooting.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerShooting.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerShooting.cs",
               "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerShooting.cs",
               "RelativeToolTip": "Assets\\Scripts\\PlayerShooting.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAgwEoAAAAAAAAA",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAwDUAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-10T16:03:17.094Z",
               "EditorCaption": ""

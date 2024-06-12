@@ -14,34 +14,31 @@ public enum Gunplay
     Dead,
 }
 
+public interface IGUN 
+{
+    public void ShootingLogic();
+    public void Initialize(MouseLook PS, TMP_Text ammotext);
+}
+
 public class PlayerShooting : MonoBehaviour
 {
-    MouseLook Camera;
     public Animator gunAnimator;
-    public int curAmmo;
-    public int maxAmmo = 6;
-    public AudioClip reloadingSFX;
-    public AudioClip shootingSFX;
-    AudioSource audiosource;
-    public float reloadTime = 3.1f;
-    public float fireTime = .36f;
     public float coolDownDynamiteTime = 5f;
     public float throwingForce = 100f;
     float cooldownDynamiteTimer = 0f;
-    float cooldownTime = 0;
     public Gunplay curState;
     public TMP_Text ammoText;
     public GameObject dynamite;
     public Slider dynamiteCooldown;
+    IGUN currentGun;
+    public List<GameObject> availableGuns;
 
     // Start is called before the first frame update
     void Start()
     {
-        Camera = GetComponent<MouseLook>();
-
-        curAmmo = maxAmmo;
+        currentGun = availableGuns[0].GetComponent<IGUN>();
+        currentGun.Initialize(this.GetComponent<MouseLook>(), ammoText);
         curState = Gunplay.Readied;
-        audiosource = GetComponent<AudioSource>();
         if (ammoText == null)
         {
             throw new System.Exception("Ammo counter is not linked up");
@@ -51,8 +48,7 @@ public class PlayerShooting : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        InputHandler();
-        StateHandler();
+        currentGun.ShootingLogic();
         SightHandler();
         ThrowingHandler();
     }
@@ -82,69 +78,16 @@ public class PlayerShooting : MonoBehaviour
         {
             target.HealthDisplay();
         }
+        else if (sightedObject != null && sightedObject.TryGetComponent(out EnemyHead head))
+        {
+            head.enemy.HealthDisplay();
+        }
         else
         {
             GameObject.FindGameObjectWithTag("EnemyDisplayName").GetComponent<CanvasGroup>().alpha = 0;
             GameObject.FindGameObjectWithTag("EnemyHealthSlider").GetComponent<CanvasGroup>().alpha = 0;
         }
     }
-
-    private void InputHandler()
-    {
-        if (curState != Gunplay.Readied)
-        {
-            return;
-        }
-
-
-        if (Input.GetButtonDown("Fire1") && curAmmo > 0)
-        {
-            gunAnimator.gameObject.transform.localEulerAngles = new Vector3(0, -5, 0);
-            gunAnimator.SetInteger("animState", 1);
-            curState = Gunplay.Firing;
-            StartCoroutine(shootingEffects());
-        }
-        if (Input.GetKeyDown(KeyCode.R) || (curAmmo == 0 && Input.GetButtonDown("Fire1")))
-        {
-            gunAnimator.gameObject.transform.localEulerAngles = new Vector3(0, -5, 0);
-            curState = Gunplay.Reloading;
-            audiosource.clip = reloadingSFX;
-            audiosource.Play();
-            gunAnimator.SetInteger("animState", 2);
-        }
-    }
-
-
-    private void StateHandler()
-    {
-        if (curState == Gunplay.Readied) return;
-        float timer = 0;
-        if (curState == Gunplay.Reloading)
-        {
-            timer = reloadTime;
-        }
-        else if (curState == Gunplay.Firing)
-        {
-            timer = fireTime;
-        }
-        if (cooldownTime < timer)
-        {
-            cooldownTime += Time.deltaTime;
-        }
-        else
-        {
-            if (curState == Gunplay.Reloading)
-            {
-                this.curAmmo = this.maxAmmo;
-                updateAmmoText();
-            }
-            cooldownTime = 0;
-            curState = Gunplay.Readied;
-            gunAnimator.SetInteger("animState", 0);
-            gunAnimator.gameObject.transform.localPosition = Vector3.zero;
-        }
-    }
-
 
     /// <summary>
     /// Returns the closest gameobject in the given list of hits, returning null if no collisions are made
@@ -155,10 +98,6 @@ public class PlayerShooting : MonoBehaviour
         float shortestDistance = float.MaxValue;
         foreach (RaycastHit hit in hits)
         {
-            if (hit.collider.gameObject.TryGetComponent(out EnemyHead head)) 
-            {
-                continue;
-            }
             if (hit.distance < shortestDistance)
             {
                 shortestDistance = hit.distance;
@@ -166,59 +105,6 @@ public class PlayerShooting : MonoBehaviour
             }
         }
         return shortestGameObject;
-    }
-
-    public void updateAmmoText()
-    {
-        this.ammoText.text = curAmmo + " / " + maxAmmo;
-    }
-
-    private IEnumerator shootingEffects()
-    {
-        yield return new WaitForSeconds(.05f);
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemyObj in enemies)
-        {
-            Enemy enemy = enemyObj.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(10);
-                enemy.canShoot = true; // Modify the canShoot property of the enemy script
-            }
-
-            EnemyImproved EI = enemyObj.GetComponent<EnemyImproved>();
-            if (EI != null)
-            {
-                EI.OnPlayerFire();
-            }
-        }
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, 600);
-        GameObject sightedObject = inSights(hits);
-        if (sightedObject.TryGetComponent(out EnemyImproved target))
-        {
-            target.TakeDamage(10);
-            foreach (RaycastHit hit in hits)
-            {
-                bool hasHeadShot = false;
-                if (hit.collider.gameObject.TryGetComponent(out EnemyHead enemyHead)
-                    && enemyHead.enemy == target && !hasHeadShot) 
-                {
-                    hasHeadShot = true;
-                    target.TakeDamage(15);
-                }
-            }
-        }
-        else if (sightedObject.TryGetComponent(out DynamiteLogic DL)) 
-        {
-            DL.Explode();
-        }
-        curAmmo -= 1;
-        updateAmmoText();
-        FindObjectOfType<ReticleLogic>().InitiateReticle(fireTime);
-        Camera.iniateRecoil();
-        audiosource.clip = shootingSFX;
-        audiosource.Play();
-
     }
 }
 

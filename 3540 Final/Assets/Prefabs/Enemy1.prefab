@@ -116,6 +116,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 4.68
       objectReference: {fileID: 0}
+    - target: {fileID: 2967802779375289117, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
+      propertyPath: m_Height
+      value: 1.5932677
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967802779375289117, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
+      propertyPath: m_Center.x
+      value: -2.946526e-14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967802779375289117, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
+      propertyPath: m_Center.y
+      value: 0.6966338
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967802779375289117, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
+      propertyPath: m_Center.z
+      value: 1.4946291e-22
+      objectReference: {fileID: 0}
     - target: {fileID: 4727942172488577975, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.19
@@ -140,6 +156,14 @@ PrefabInstance:
       propertyPath: wanderPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1532314791122576242}
+    - target: {fileID: 8528458566400606359, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528458566400606359, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
+      propertyPath: m_Center.y
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 8555232138403918356, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

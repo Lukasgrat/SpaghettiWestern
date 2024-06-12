@@ -56,4 +56,22 @@ public class MouseLook : MonoBehaviour
             currentRecoilFrame = 0;
         }
     }
+
+    /// <summary>
+    /// Returns the closest gameobject in the given list of hits, returning null if no collisions are made
+    /// </summary>
+    public GameObject inSights(RaycastHit[] hits)
+    {
+        GameObject shortestGameObject = null;
+        float shortestDistance = float.MaxValue;
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.distance < shortestDistance)
+            {
+                shortestDistance = hit.distance;
+                shortestGameObject = hit.collider.gameObject;
+            }
+        }
+        return shortestGameObject;
+    }
 }
