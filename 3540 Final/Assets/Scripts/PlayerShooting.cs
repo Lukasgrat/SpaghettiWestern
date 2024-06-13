@@ -18,6 +18,8 @@ public interface IGUN
 {
     public void ShootingLogic();
     public void Initialize(MouseLook PS, TMP_Text ammotext);
+
+    public void UpdateAmmoText();
 }
 
 public class PlayerShooting : MonoBehaviour
@@ -31,13 +33,19 @@ public class PlayerShooting : MonoBehaviour
     public GameObject dynamite;
     public Slider dynamiteCooldown;
     IGUN currentGun;
+    int currentGunIndex = 0;
     public List<GameObject> availableGuns;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentGun = availableGuns[0].GetComponent<IGUN>();
-        currentGun.Initialize(this.GetComponent<MouseLook>(), ammoText);
+        foreach (GameObject gun in availableGuns) 
+        {
+            gun.GetComponent<IGUN>().Initialize(this.GetComponent<MouseLook>(), ammoText);
+            gun.SetActive(false);
+        }
+        availableGuns[currentGunIndex].gameObject.SetActive(true);
+        currentGun = availableGuns[currentGunIndex].GetComponent<IGUN>();
         curState = Gunplay.Readied;
         if (ammoText == null)
         {
@@ -51,6 +59,30 @@ public class PlayerShooting : MonoBehaviour
         currentGun.ShootingLogic();
         SightHandler();
         ThrowingHandler();
+        ShootSwapHandler();
+    }
+
+    void ShootSwapHandler() 
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2)) 
+        {
+            foreach (GameObject gun in availableGuns) 
+            {
+                gun.SetActive(false);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha1)) 
+            {
+                currentGunIndex = 0;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                currentGunIndex = 1;
+            }
+
+            availableGuns[currentGunIndex].SetActive(true);
+            currentGun = availableGuns[currentGunIndex].GetComponent<IGUN>();
+            currentGun.UpdateAmmoText();
+        }
     }
 
     void ThrowingHandler() 

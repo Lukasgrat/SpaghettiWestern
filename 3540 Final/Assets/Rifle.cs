@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Revolver : MonoBehaviour, IGUN
+public class Rifle : MonoBehaviour, IGUN
 {
     public AudioClip reloadingSFX;
     Animator gunAnimator;
     public AudioClip shootingSFX;
     AudioSource shootingSFXSource;
-    public float reloadTime = 3.1f;
-    public float fireTime = .36f;
+    public float reloadTime = 3f;
+    public float fireTime = .75f;
     float coolDownTime = 0f;
     public Gunplay curState;
-    public int maxAmmo = 6;
+    public int maxAmmo = 5;
     int curAmmo;
     TMP_Text ammoText;
     MouseLook playerHead;
@@ -30,7 +30,7 @@ public class Revolver : MonoBehaviour, IGUN
         shootingSFXSource = GetComponent<AudioSource>();
     }
 
-    public void Initialize(MouseLook PS, TMP_Text ammotext) 
+    public void Initialize(MouseLook PS, TMP_Text ammotext)
     {
         playerHead = PS;
         this.ammoText = ammotext;
@@ -65,7 +65,7 @@ public class Revolver : MonoBehaviour, IGUN
         }
     }
 
-    public void ShootingLogic() 
+    public void ShootingLogic()
     {
         StateHandler();
         if (curState != Gunplay.Readied)
@@ -98,14 +98,14 @@ public class Revolver : MonoBehaviour, IGUN
 
     private IEnumerator shootingEffects()
     {
-        yield return new WaitForSeconds(.05f);
+        yield return new WaitForSeconds(.1333f);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemyObj in enemies)
         {
             Enemy enemy = enemyObj.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(10);
+                enemy.TakeDamage(5);
                 enemy.canShoot = true; // Modify the canShoot property of the enemy script
             }
 
@@ -115,16 +115,16 @@ public class Revolver : MonoBehaviour, IGUN
                 EI.OnPlayerFire();
             }
         }
-        RaycastHit[] hits = Physics.RaycastAll(playerHead.transform.position, 
+        RaycastHit[] hits = Physics.RaycastAll(playerHead.transform.position,
             playerHead.transform.forward, 600);
         GameObject sightedObject = playerHead.inSights(hits);
         if (sightedObject.TryGetComponent(out EnemyImproved target))
         {
-            target.TakeDamage(10);
+            target.TakeDamage(5);
         }
         if (sightedObject.TryGetComponent(out EnemyHead enemyHead))
         {
-            enemyHead.enemy.TakeDamage(25);
+            enemyHead.enemy.TakeDamage(35);
         }
         else if (sightedObject.TryGetComponent(out DynamiteLogic DL))
         {
