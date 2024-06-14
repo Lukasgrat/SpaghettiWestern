@@ -560,6 +560,9 @@ MonoBehaviour:
   target: {fileID: 1798532062}
   audioClip: {fileID: 8300000, guid: ffdc8b6e660e05748ae2eaa3bbf25b51, type: 3}
   lookDuration: 5
+  door: {fileID: 0}
+  endRotation: -38.224
+  lerpSpeed: 1
 --- !u!114 &85366282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2913,11 +2916,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8555232138403918356, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 8555232138403918356, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16.26
+      value: -16.64
       objectReference: {fileID: 0}
     - target: {fileID: 8555232138403918356, guid: 91374b9cc3a564beca55b10c2d4c3692, type: 3}
       propertyPath: m_LocalRotation.w

@@ -9,6 +9,7 @@ TagManager:
   - EnemyHealthSlider
   - EnemyDisplayName
   - Particles
+  - RoomDoor
   layers:
   - Default
   - TransparentFX
