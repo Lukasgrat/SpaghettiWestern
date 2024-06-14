@@ -8,10 +8,10 @@ public class InitialSceneLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
-        if (PlayerPrefs.GetInt("Bypass", 0) == 1)
+        SceneManager.LoadScene(2, LoadSceneMode.Additive);
+        if (PlayerPrefs.GetInt("Bypass", 1) == 1)
         {
-            PlayerPrefs.SetInt("Bypass", 0);
+            PlayerPrefs.SetInt("Bypass", 1);
             SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
         }
     }
