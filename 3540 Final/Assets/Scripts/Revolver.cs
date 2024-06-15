@@ -117,18 +117,21 @@ public class Revolver : MonoBehaviour, IGUN
         }
         RaycastHit[] hits = Physics.RaycastAll(playerHead.transform.position, 
             playerHead.transform.forward, 600);
-        GameObject sightedObject = playerHead.inSights(hits);
-        if (sightedObject.TryGetComponent(out EnemyImproved target))
+        if (hits.Length > 0)
         {
-            target.TakeDamage(10);
-        }
-        if (sightedObject.TryGetComponent(out EnemyHead enemyHead))
-        {
-            enemyHead.enemy.TakeDamage(25);
-        }
-        else if (sightedObject.TryGetComponent(out DynamiteLogic DL))
-        {
-            DL.Explode();
+            GameObject sightedObject = playerHead.inSights(hits);
+            if (sightedObject.TryGetComponent(out EnemyImproved target))
+            {
+                target.TakeDamage(10);
+            }
+            if (sightedObject.TryGetComponent(out EnemyHead enemyHead))
+            {
+                enemyHead.enemy.TakeDamage(25);
+            }
+            else if (sightedObject.TryGetComponent(out DynamiteLogic DL))
+            {
+                DL.Explode();
+            }
         }
         curAmmo -= 1;
         UpdateAmmoText();

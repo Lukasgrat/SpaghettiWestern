@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\enemyimproved.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemyimproved.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\scripts\\playershooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playershooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|c:\\users\\lukas\\documents\\cs3540\\spaghettiwestern\\3540 final\\assets\\rifle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\rifle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\rifle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\assets\\scripts\\enemyimproved.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{773AA31D-52A8-A675-3778-F19036FEA296}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemyimproved.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +30,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 187,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Rifle.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Rifle.cs",
               "RelativeDocumentMoniker": "Assets\\Rifle.cs",
@@ -42,12 +42,11 @@
               "RelativeToolTip": "Assets\\Rifle.cs",
               "ViewState": "AQIAAHkAAAAAAAAAAAAwwIUAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-13T03:11:45.774Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-13T03:11:45.774Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController.cs",
@@ -55,24 +54,24 @@
               "RelativeToolTip": "Assets\\Scripts\\PlayerController.cs",
               "ViewState": "AQIAABwAAAAAAAAAAAAQwDkAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T16:30:18.216Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-10T16:30:18.216Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "EnemyImproved.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\EnemyImproved.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\EnemyImproved.cs",
               "ToolTip": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\EnemyImproved.cs",
               "RelativeToolTip": "Assets\\Scripts\\EnemyImproved.cs",
-              "ViewState": "AQIAAGQAAAAAAAAAAAAAwHsAAAAJAAAA",
+              "ViewState": "AQIAANEAAAAAAAAAAAAgwN8AAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T16:12:21.609Z"
+              "WhenOpened": "2024-06-10T16:12:21.609Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PlayerShooting.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\PlayerShooting.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerShooting.cs",
@@ -91,7 +90,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Revolver.cs",
               "DocumentMoniker": "C:\\Users\\lukas\\Documents\\CS3540\\SpaghettiWestern\\3540 Final\\Assets\\Scripts\\Revolver.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Revolver.cs",
