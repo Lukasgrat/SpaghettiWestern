@@ -10,6 +10,7 @@ TagManager:
   - EnemyDisplayName
   - Particles
   - RoomDoor
+  - EnemyWeapon
   layers:
   - Default
   - TransparentFX

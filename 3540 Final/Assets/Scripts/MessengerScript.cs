@@ -8,6 +8,7 @@ public class LookAtTargetOnThreshold : MonoBehaviour
     public Transform door;
     public float endRotation = -38.224f; // Ending y-axis rotation (-38.224 degrees)
     public float lerpSpeed = 1.0f; // Controls lerp speed (higher = faster)
+    public GameObject instructions;
 
     private float currentLerpTime = 0.0f;
 
@@ -55,6 +56,7 @@ public class LookAtTargetOnThreshold : MonoBehaviour
 
     void OpenDoor()
     {
+        instructions.SetActive(true);
         currentLerpTime += Time.deltaTime * lerpSpeed;
 
         // Clamp lerp factor between 0 and 1

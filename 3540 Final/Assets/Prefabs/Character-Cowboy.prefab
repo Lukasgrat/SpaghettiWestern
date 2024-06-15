@@ -670,6 +670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Wep_Revolver_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1746743948028706, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
+      propertyPath: m_TagString
+      value: EnemyWeapon
+      objectReference: {fileID: 0}
     - target: {fileID: 4422459223594172, guid: 06d5955ec0ad0a647971bfeea7cd9f8a, type: 3}
       propertyPath: m_LocalScale.x
       value: 2

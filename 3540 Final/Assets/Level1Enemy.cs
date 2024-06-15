@@ -1,10 +1,12 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class EnemyImproved : MonoBehaviour
+
+public class Level1Enemy : MonoBehaviour
 {
-
     public enum FSMStates 
     {
         idle,
@@ -25,7 +27,7 @@ public class EnemyImproved : MonoBehaviour
     public float hearingRadius = 10;
     public Transform head;
     public string displayName;
-    public FSMStates currentState;
+    public FSMStates currentState = FSMStates.idle; // Start in idle state
     public GameObject[] wanderPoints;
     public GameObject gun;
 
@@ -33,6 +35,9 @@ public class EnemyImproved : MonoBehaviour
     Vector3 nextDestination;
     int currentDestinationIndex = 0;
     float distanceToPlayer;
+
+    static bool cardGamePlayed = false; // Flag to track card game completion
+    static bool playerWonCardGame = false; // Flag to track card game winner
 
 
     // Start is called before the first frame update
@@ -52,6 +57,9 @@ public class EnemyImproved : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!cardGamePlayed) // Don't process enemy states until card game is played
+            return;
 
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
@@ -80,8 +88,8 @@ public class EnemyImproved : MonoBehaviour
 
     void UpdateIdleState()
     {
-        playerAnimator.SetInteger("animState", 0);
         gun.SetActive(false);
+        playerAnimator.SetInteger("animState", 0);
         if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position,
             player.transform.position - head.transform.position)).CompareTag("Player"))
         {
@@ -92,9 +100,8 @@ public class EnemyImproved : MonoBehaviour
 
     void UpdatePatrolState()
     {
-
-        playerAnimator.SetInteger("animState", 1);
         gun.SetActive(false);
+        playerAnimator.SetInteger("animState", 1);
 
         if(Vector3.Distance(transform.position, nextDestination) < 3)
         {
@@ -270,5 +277,11 @@ public class EnemyImproved : MonoBehaviour
         TMP_Text text = GameObject.FindGameObjectWithTag("EnemyDisplayName").GetComponent<TMP_Text>();
         text.gameObject.GetComponent<CanvasGroup>().alpha = 1;
         text.text = displayName;
+    }
+
+    public static void SetCardGamePlayed(bool win) // Function to signal the card game is played and result (win/lose)
+    {
+        cardGamePlayed = true;
+        playerWonCardGame = win;
     }
 }
