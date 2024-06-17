@@ -24,6 +24,7 @@ public class EnemyImproved : MonoBehaviour
     float shootingTime = 0;
     public float seeingRadius = 5;
     public float hearingRadius = 10;
+    public float fieldOfView = 45f;
     public Transform head;
     public string displayName;
     public FSMStates currentState;
@@ -107,7 +108,9 @@ public class EnemyImproved : MonoBehaviour
         {
             FindNextPoint();
         }
-        else if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player")) 
+        else if (distanceToPlayer <= seeingRadius 
+        //&& InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player") 
+        && IsPlayerInClearFOV()) 
         {
             currentState = FSMStates.shooting;
         }
@@ -118,6 +121,7 @@ public class EnemyImproved : MonoBehaviour
 
     }
 
+    // Updates Shooting FSM State
     void UpdateShootState()
     {
 
@@ -133,8 +137,10 @@ public class EnemyImproved : MonoBehaviour
             head.transform.LookAt(player.transform.position);
         }
 
-        if ((Vector3.Distance(player.transform.position, transform.position) > seeingRadius
-            && !InSights(Physics.RaycastAll(head.transform.position, head.transform.forward, hearingRadius)).CompareTag("Player"))) 
+        if (Vector3.Distance(player.transform.position, transform.position) > seeingRadius
+            && !IsPlayerInClearFOV()
+            //!InSights(Physics.RaycastAll(head.transform.position, head.transform.forward, hearingRadius)).CompareTag("Player")) 
+        )
         {
             if (this.wanderPoints.Length > 1)
             {
@@ -179,6 +185,7 @@ public class EnemyImproved : MonoBehaviour
         }
     }
 
+    // Updates Dead FSM State
     void UpdateDeadState()
     {
         isDead = true;
@@ -189,6 +196,7 @@ public class EnemyImproved : MonoBehaviour
         }
     }
 
+    // Sets the enemy's destination to be the next wanderpoint in the array
     void FindNextPoint()
     {
         nextDestination = wanderPoints[currentDestinationIndex].transform.position;
@@ -198,6 +206,7 @@ public class EnemyImproved : MonoBehaviour
         agent.SetDestination(nextDestination);
     }
 
+    // Rotates the Enemy to face the given target
     void FaceTarget(Vector3 target)
     {
         Vector3 directionToTarget = (target - transform.position).normalized;
@@ -283,5 +292,27 @@ public class EnemyImproved : MonoBehaviour
         TMP_Text text = GameObject.FindGameObjectWithTag("EnemyDisplayName").GetComponent<TMP_Text>();
         text.gameObject.GetComponent<CanvasGroup>().alpha = 1;
         text.text = displayName;
+    }
+
+    bool IsPlayerInClearFOV()
+    {
+        RaycastHit hit;
+        Vector3 directionToPlayer = player.transform.position - head.position;
+        
+        if (Vector3.Angle(directionToPlayer, head.forward) <= fieldOfView)
+        {
+            if(Physics.Raycast(head.position, directionToPlayer, out hit, seeingRadius))
+            {
+                if(hit.collider.CompareTag("Player"))
+                {
+                    print("Player in sight");
+                    return true;
+                }
+
+                return false;
+            }
+            return false;
+        }
+        return false;
     }
 }

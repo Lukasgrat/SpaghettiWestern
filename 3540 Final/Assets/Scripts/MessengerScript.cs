@@ -49,12 +49,12 @@ public class LookAtTargetOnThreshold : MonoBehaviour
             lookStartTime = Time.time;
             audioSource.Play();
             
-            Invoke("OpenDoor", audioSource.clip.length);
+            Invoke("AfterAudio", audioSource.clip.length);
             hasPlayed = true;
         }
     }
 
-    void OpenDoor()
+    void AfterAudio()
     {
         instructions.SetActive(true);
         currentLerpTime += Time.deltaTime * lerpSpeed;
