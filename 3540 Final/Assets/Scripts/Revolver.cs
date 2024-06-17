@@ -38,7 +38,12 @@ public class Revolver : MonoBehaviour, IGUN
     }
     private void StateHandler()
     {
-        if (curState == Gunplay.Readied) return;
+        if (curState == Gunplay.Readied)
+        {
+            transform.GetChild(0).localPosition = Vector3.zero;
+            transform.GetChild(0).localRotation = Quaternion.identity;
+            return;
+        }
         float timer = 0;
         if (curState == Gunplay.Reloading)
         {
@@ -73,7 +78,7 @@ public class Revolver : MonoBehaviour, IGUN
     public void ShootingLogic() 
     {
         StateHandler();
-        if (curState != Gunplay.Readied)
+        if (curState != Gunplay.Readied || FindAnyObjectByType<PlayerController>().IsDead())
         {
             return;
         }
@@ -158,7 +163,7 @@ public class Revolver : MonoBehaviour, IGUN
 
     public bool CanHolster() 
     {
-        return curState != Gunplay.Holster;
+        return curState == Gunplay.Readied;
     }
 
 

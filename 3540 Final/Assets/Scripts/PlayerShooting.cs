@@ -71,7 +71,7 @@ public class PlayerShooting : MonoBehaviour
 
     void ShootSwapHandler() 
     {
-        if (!currentGun.CanHolster()) return;
+        if (!currentGun.CanHolster() || FindAnyObjectByType<PlayerController>().IsDead()) return;
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2)) 
         {
             bool newGun = false;
@@ -103,6 +103,7 @@ public class PlayerShooting : MonoBehaviour
 
     void ThrowingHandler() 
     {
+        if (FindAnyObjectByType<PlayerController>().IsDead()) { return; }
         if (cooldownDynamiteTimer > 0)
         {
             cooldownDynamiteTimer -= Time.deltaTime;

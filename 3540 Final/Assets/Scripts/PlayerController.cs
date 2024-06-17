@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsDead()) return;
         if (shootingLogic.curState == Gunplay.Dead)
         {
             if (currentDeathTimer < deathTimer)
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
     /// <returns></returns>
     public bool IsDead()
     {
-        return health > 0;
+        return health <= 0;
     }
 
 

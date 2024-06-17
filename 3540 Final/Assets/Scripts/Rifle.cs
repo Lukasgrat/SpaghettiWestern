@@ -40,7 +40,7 @@ public class Rifle : MonoBehaviour, IGUN
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire2") && (curState == Gunplay.Readied 
+        if (Input.GetButton("Fire2") && !FindAnyObjectByType<PlayerController>().IsDead() && (curState == Gunplay.Readied 
             || (sightingTimer == SIGHTINGTIME && curState == Gunplay.Firing)))
         {
             sightingTimer = Mathf.Min(sightingTimer + Time.deltaTime, SIGHTINGTIME);
@@ -75,7 +75,12 @@ public class Rifle : MonoBehaviour, IGUN
     }
     private void StateHandler()
     {
-        if (curState == Gunplay.Readied) return;
+        if (curState == Gunplay.Readied) 
+        {
+            transform.GetChild(0).localPosition  = Vector3.zero;
+            transform.GetChild(0).localRotation = Quaternion.identity;
+            return;
+        }
         float timer = 0;
         if (curState == Gunplay.Reloading)
         {
@@ -110,7 +115,7 @@ public class Rifle : MonoBehaviour, IGUN
     public void ShootingLogic()
     {
         StateHandler();
-        if (curState != Gunplay.Readied)
+        if (curState != Gunplay.Readied ||  FindAnyObjectByType<PlayerController>().IsDead())
         {
             return;
         }
@@ -195,7 +200,7 @@ public class Rifle : MonoBehaviour, IGUN
 
     public bool CanHolster()
     {
-        return curState != Gunplay.Holster && !isZooming;
+        return curState == Gunplay.Readied && !isZooming;
     }
 
 

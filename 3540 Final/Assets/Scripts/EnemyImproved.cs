@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class EnemyImproved : MonoBehaviour
@@ -29,6 +30,8 @@ public class EnemyImproved : MonoBehaviour
     public GameObject[] wanderPoints;
     public GameObject gun;
 
+    NavMeshAgent agent;
+
     Animator playerAnimator;
     Vector3 nextDestination;
     int currentDestinationIndex = 0;
@@ -41,10 +44,15 @@ public class EnemyImproved : MonoBehaviour
         curhealth = maxHealth;
         //currentState = FSMStates.idle;
         player = GameObject.FindGameObjectWithTag("Player");
-        if (wanderPoints.Length > 1) 
+        agent = GetComponent<NavMeshAgent>();
+        if (wanderPoints.Length > 1)
         {
             currentState = FSMStates.patrol;
             FindNextPoint();
+        }
+        else 
+        {
+            GetComponent<NavMeshAgent>().enabled = false;
         }
         playerAnimator = GetComponent<Animator>();
     }
@@ -92,7 +100,6 @@ public class EnemyImproved : MonoBehaviour
 
     void UpdatePatrolState()
     {
-
         playerAnimator.SetInteger("animState", 1);
         gun.SetActive(false);
 
@@ -106,7 +113,7 @@ public class EnemyImproved : MonoBehaviour
         }
 
         FaceTarget(nextDestination);
-
+        agent.SetDestination(nextDestination);
         //transform.position = Vector3.MoveTowards(transform.position, nextDestination, 1.5f * Time.deltaTime);
 
     }
@@ -187,6 +194,8 @@ public class EnemyImproved : MonoBehaviour
         nextDestination = wanderPoints[currentDestinationIndex].transform.position;
 
         currentDestinationIndex = (currentDestinationIndex + 1) % wanderPoints.Length;
+
+        agent.SetDestination(nextDestination);
     }
 
     void FaceTarget(Vector3 target)
@@ -257,7 +266,11 @@ public class EnemyImproved : MonoBehaviour
 
         if (Vector3.Distance(player.transform.position, transform.position) <= hearingRadius) 
         {
-            currentState = FSMStates.shooting;
+            FaceTarget(player.transform.position);
+            if (InSights(Physics.RaycastAll(transform.position, transform.forward,hearingRadius)).TryGetComponent(out PlayerController PC))
+            {
+                currentState = FSMStates.shooting;
+            }
         }
     }
 
