@@ -5,7 +5,9 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     Transform playerBody;
-    public float mouseSensitivity = 100;
+    float mouseSensitivity = PlayerPrefs.GetInt("mouseSensitivity", 100);
+    // Start is called before the first frame update
+    
     public float recoilDuration = 1;
     public int recoilAmount = 30;
     private float currentRecoilFrame = 0;
