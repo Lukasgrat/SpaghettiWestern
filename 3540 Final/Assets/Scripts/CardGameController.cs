@@ -8,7 +8,12 @@ public class CardGameController : MonoBehaviour
     public GameObject goodCardDisplay; // UI element for good card display
     public GameObject badCardDisplay;  // UI element for bad card display
 
+    public GameObject step2;
+    public GameObject win;
+    public GameObject lose;
+
     private bool cardGamePlayed = false; // Flag to track card game state
+    
 
     void Start()
     {
@@ -35,17 +40,19 @@ public class CardGameController : MonoBehaviour
 
         // Determine card outcome (good or bad) randomly
         bool isGoodCard = Random.Range(0, 2) == 0; // 50% chance of good card
+        step2.SetActive(false);
 
         if (isGoodCard)
         {
             goodCardDisplay.SetActive(true); // Show good card display
             Level1Enemy.SetCardGamePlayed(true);
-            
+            win.SetActive(true);
         }
         else
         {
             badCardDisplay.SetActive(true); // Show bad card display
             Level1Enemy.SetCardGamePlayed(false); // Call SetCardGamePlayed on enemy (lose)
+            lose.SetActive(true);
         }
     }
 

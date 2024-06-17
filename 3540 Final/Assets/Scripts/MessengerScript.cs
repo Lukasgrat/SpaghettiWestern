@@ -6,7 +6,7 @@ public class LookAtTargetOnThreshold : MonoBehaviour
     public AudioClip audioClip;
     public float lookDuration = 2f;
     public Transform door;
-    public float endRotation = -38.224f; // Ending y-axis rotation (-38.224 degrees)
+    float endRotation = -38.224f; // Ending y-axis rotation of door (-38.224 degrees)
     public float lerpSpeed = 1.0f; // Controls lerp speed (higher = faster)
     public GameObject instructions;
 
@@ -22,11 +22,11 @@ public class LookAtTargetOnThreshold : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = audioClip;
         originalRotation = transform.rotation;
-        door = GameObject.FindGameObjectWithTag("RoomDoor").transform;
+        //door = GameObject.FindGameObjectWithTag("RoomDoor").transform;
 
-
+        PlayAudio();
         // Start the delayed execution
-        Invoke("LookAtTarget", 5f);
+        //Invoke("PlayAudio", 5f);
     }
 
     void Update()
@@ -35,21 +35,21 @@ public class LookAtTargetOnThreshold : MonoBehaviour
         {
             if (Time.time - lookStartTime >= lookDuration)
             {
-                transform.rotation = originalRotation;
-                enabled = false;
+                //transform.rotation = originalRotation;
+                //enabled = false;
             }
         }
     }
 
-    void LookAtTarget()
+    void PlayAudio()
     {
-        if (target != null && !hasPlayed)
+        if (!hasPlayed)
         {
-            transform.LookAt(target);
+            //transform.LookAt(target);
             lookStartTime = Time.time;
             audioSource.Play();
             
-            Invoke("AfterAudio", audioSource.clip.length);
+            Invoke("AfterAudio", 30);
             hasPlayed = true;
         }
     }
