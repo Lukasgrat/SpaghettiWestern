@@ -50,8 +50,11 @@ MonoBehaviour:
   shootingSFX: {fileID: 8300000, guid: ba1521a134be3dd4799827ed66684e35, type: 3}
   reloadTime: 3
   fireTime: 0.75
+  holsterTime: 0.834
   curState: 0
   maxAmmo: 5
+  sightingTime: 0.5
+  decreaseInFOV: 20
 --- !u!82 &1573645224474170813
 AudioSource:
   m_ObjectHideFlags: 0

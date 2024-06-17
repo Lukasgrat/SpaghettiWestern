@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public float health = 100;
     public Slider healthSlider;
 
+    bool isZooming;
+
     [Header("Death Related Atttributes")]
     public float deathTimer = 2f;
     float currentDeathTimer;
@@ -53,7 +55,11 @@ public class PlayerController : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
         input = (transform.right * moveHorizontal + transform.forward * moveVertical).normalized;
         input *= moveSpeed;
-        if (controller.isGrounded)
+        if (isZooming) 
+        {
+            input /= 2;
+        }
+        if (controller.isGrounded && !isZooming)
         {
             moveDirection = input;
             if (Input.GetButton("Jump"))
@@ -99,5 +105,10 @@ public class PlayerController : MonoBehaviour
             shootingLogic.curState = Gunplay.Dead;
 
         }
+    }
+
+    public void sendZoomingSignal(bool curZoom) 
+    {
+        isZooming = curZoom;
     }
 }

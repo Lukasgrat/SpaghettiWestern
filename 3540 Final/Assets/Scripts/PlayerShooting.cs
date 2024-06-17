@@ -11,6 +11,7 @@ public enum Gunplay
     Reloading,
     Readied,
     Firing,
+    Holster,
     Dead,
 }
 
@@ -18,6 +19,12 @@ public interface IGUN
 {
     public void ShootingLogic();
     public void Initialize(MouseLook PS, TMP_Text ammotext);
+
+    public void Holster();
+
+    public void UnHolster();
+
+    public bool CanHolster();
 
     public void UpdateAmmoText();
 }
@@ -64,24 +71,33 @@ public class PlayerShooting : MonoBehaviour
 
     void ShootSwapHandler() 
     {
+        if (!currentGun.CanHolster()) return;
         if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2)) 
         {
-            foreach (GameObject gun in availableGuns) 
+            bool newGun = false;
+            if (Input.GetKeyDown(KeyCode.Alpha1) && currentGunIndex != 0) 
+            {
+                currentGunIndex = 0;
+                newGun = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && currentGunIndex != 1)
+            {
+                currentGunIndex = 1;
+                newGun = true;
+            }
+
+            if (!newGun) return;
+
+
+            foreach (GameObject gun in availableGuns)
             {
                 gun.SetActive(false);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha1)) 
-            {
-                currentGunIndex = 0;
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                currentGunIndex = 1;
-            }
-
             availableGuns[currentGunIndex].SetActive(true);
+            currentGun.UnHolster();
             currentGun = availableGuns[currentGunIndex].GetComponent<IGUN>();
             currentGun.UpdateAmmoText();
+            currentGun.Holster();
         }
     }
 

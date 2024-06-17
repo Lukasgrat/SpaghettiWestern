@@ -14,6 +14,7 @@ public class Revolver : MonoBehaviour, IGUN
     float coolDownTime = 0f;
     public Gunplay curState;
     public int maxAmmo = 6;
+    public float holsterTime = .425f;
     int curAmmo;
     TMP_Text ammoText;
     MouseLook playerHead;
@@ -21,13 +22,13 @@ public class Revolver : MonoBehaviour, IGUN
     void Start()
     {
         curAmmo = maxAmmo;
+        gunAnimator = transform.GetChild(0).GetComponent<Animator>();
+        shootingSFXSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        gunAnimator = transform.GetChild(0).GetComponent<Animator>();
-        shootingSFXSource = GetComponent<AudioSource>();
     }
 
     public void Initialize(MouseLook PS, TMP_Text ammotext) 
@@ -46,6 +47,10 @@ public class Revolver : MonoBehaviour, IGUN
         else if (curState == Gunplay.Firing)
         {
             timer = fireTime;
+        }
+        else if(curState == Gunplay.Holster) 
+        {
+            timer = holsterTime;
         }
         if (coolDownTime < timer)
         {
@@ -100,22 +105,8 @@ public class Revolver : MonoBehaviour, IGUN
     {
         yield return new WaitForSeconds(.05f);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemyObj in enemies)
-        {
-            Enemy enemy = enemyObj.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(10);
-                enemy.canShoot = true; // Modify the canShoot property of the enemy script
-            }
 
-            EnemyImproved EI = enemyObj.GetComponent<EnemyImproved>();
-            if (EI != null)
-            {
-                EI.OnPlayerFire();
-            }
-        }
-        RaycastHit[] hits = Physics.RaycastAll(playerHead.transform.position, 
+        RaycastHit[] hits = Physics.RaycastAll(playerHead.transform.position,
             playerHead.transform.forward, 600);
         if (hits.Length > 0)
         {
@@ -133,6 +124,22 @@ public class Revolver : MonoBehaviour, IGUN
                 DL.Explode();
             }
         }
+        foreach (GameObject enemyObj in enemies)
+        {
+            Enemy enemy = enemyObj.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(10);
+                enemy.canShoot = true; // Modify the canShoot property of the enemy script
+            }
+
+            EnemyImproved EI = enemyObj.GetComponent<EnemyImproved>();
+            if (EI != null)
+            {
+                EI.OnPlayerFire();
+            }
+        }
+        
         curAmmo -= 1;
         UpdateAmmoText();
         FindObjectOfType<ReticleLogic>().InitiateReticle(fireTime);
@@ -140,5 +147,25 @@ public class Revolver : MonoBehaviour, IGUN
         shootingSFXSource.clip = shootingSFX;
         shootingSFXSource.Play();
 
+    }
+
+
+    public void Holster() 
+    {
+        gunAnimator.SetInteger("animState", 3);
+        curState = Gunplay.Holster;
+    }
+
+    public bool CanHolster() 
+    {
+        return curState != Gunplay.Holster;
+    }
+
+
+    public void UnHolster()
+    {
+        gunAnimator.SetInteger("animState", 0);
+        curState = Gunplay.Readied;
+        coolDownTime = 0;
     }
 }
