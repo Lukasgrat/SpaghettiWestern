@@ -13,6 +13,8 @@ public class StandardLevelManager : MonoBehaviour
     public bool objectiveComplete = false;
     float curTime = 0;
     public PlayerController playerController;
+    public GameObject gameCompleteUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,21 +42,45 @@ public class StandardLevelManager : MonoBehaviour
         else if (objectiveComplete)
         {
             curTime = Mathf.Min(curTime + Time.deltaTime, deathScreenTime);
-            if (curTime >= deathScreenTime)
+
+            // Game Won
+            if (SceneManager.GetActiveScene().buildIndex == 5)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                Time.timeScale = 0f;
+                gameCompleteUI.SetActive(true);
+                Invoke("LoadMainMenu", 10);
             }
+            // Level won
             else
             {
-                levelWinUI.SetActive(true);
-                fadeUI.gameObject.SetActive(true);
-                fadeUI.alpha = curTime / deathScreenTime;
+                if (curTime >= deathScreenTime)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
+                else
+                {
+                    levelWinUI.SetActive(true);
+                    fadeUI.gameObject.SetActive(true);
+                    fadeUI.alpha = curTime / deathScreenTime;
+                }
             }
+
+            
         }
     }
 
     public void ExplosionSignal() 
     {
         objectiveComplete = true;
+    }
+
+    public void EnemiesDead()
+    {
+        objectiveComplete = true;
+    }
+
+    private void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

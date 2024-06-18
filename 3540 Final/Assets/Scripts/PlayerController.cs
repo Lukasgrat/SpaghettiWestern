@@ -105,8 +105,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("They do be dead");
             health = 0;
             shootingLogic.curState = Gunplay.Dead;
-            //deathText.SetActive(true);
-            //transform.Rotate(-90, 0, 0, Space.Self);
 
         }
     }

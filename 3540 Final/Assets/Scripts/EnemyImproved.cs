@@ -18,7 +18,7 @@ public class EnemyImproved : MonoBehaviour
     GameObject player;
     public int maxHealth = 30;
     int curhealth = 30;
-    bool isDead = false;
+    public bool isDead = false;
     public bool canShoot = false; // New variable to control shooting
     public float shootingCooldown = 1;
     float shootingTime = 0;
@@ -193,6 +193,7 @@ public class EnemyImproved : MonoBehaviour
         {
             playerAnimator.SetInteger("animState", 2);
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            FindAnyObjectByType<EnemyManager>().enemyDied();
         }
     }
 

@@ -15483,7 +15483,7 @@ GameObject:
   - component: {fileID: 739584687}
   - component: {fileID: 739584686}
   m_Layer: 5
-  m_Name: cardGameInstructions
+  m_Name: levelInstructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
