@@ -9,14 +9,14 @@ public class StandardLevelManager : MonoBehaviour
     public GameObject deathUI;
     public GameObject levelWinUI;
     public CanvasGroup fadeUI;
-    public float deathScreenTime;
+    public float deathScreenTime = 2;
     public bool objectiveComplete = false;
     float curTime = 0;
     public PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame

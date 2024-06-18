@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Death Related Atttributes")]
     public float deathTimer = 2f;
+    public GameObject deathText;
     float currentDeathTimer;
 
     // Start is called before the first frame update
@@ -104,6 +105,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log("They do be dead");
             health = 0;
             shootingLogic.curState = Gunplay.Dead;
+            //deathText.SetActive(true);
+            //transform.Rotate(-90, 0, 0, Space.Self);
 
         }
     }
