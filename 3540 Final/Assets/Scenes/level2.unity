@@ -4943,6 +4943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 248230119}
   - component: {fileID: 248230120}
+  - component: {fileID: 248230121}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -4983,6 +4984,19 @@ MonoBehaviour:
   deathScreenTime: 2
   objectiveComplete: 0
   playerController: {fileID: 1402691297}
+  gameCompleteUI: {fileID: 0}
+--- !u!114 &248230121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248230118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab521570b5914df7aec0df734a4c63f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &251351561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9181,6 +9195,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 84116041399179465, guid: 0fa6e699769be4f8a8d53543b1cd2c65, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3020632372766864739, guid: 0fa6e699769be4f8a8d53543b1cd2c65, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -9267,8 +9285,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8432814794574900919, guid: 0fa6e699769be4f8a8d53543b1cd2c65, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8553747283617822533, guid: 0fa6e699769be4f8a8d53543b1cd2c65, type: 3}
+      propertyPath: objective
+      value: 
+      objectReference: {fileID: 739584684}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

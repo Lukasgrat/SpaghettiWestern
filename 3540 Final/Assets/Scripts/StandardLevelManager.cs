@@ -29,6 +29,7 @@ public class StandardLevelManager : MonoBehaviour
             curTime = Mathf.Min(curTime + Time.deltaTime, deathScreenTime);
             if (curTime >= deathScreenTime)
             {
+                FindAnyObjectByType<CalculateTimeSpent>().LevelDone();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             else
@@ -55,6 +56,7 @@ public class StandardLevelManager : MonoBehaviour
             {
                 if (curTime >= deathScreenTime)
                 {
+                    FindAnyObjectByType<CalculateTimeSpent>().LevelDone();
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 }
                 else
@@ -81,6 +83,7 @@ public class StandardLevelManager : MonoBehaviour
 
     private void LoadMainMenu()
     {
+        FindAnyObjectByType<CalculateTimeSpent>().LevelDone();
         SceneManager.LoadScene(0);
     }
 }

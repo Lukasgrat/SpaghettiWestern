@@ -14,9 +14,11 @@ public class LevelSwitcher : MonoBehaviour
             SceneManager.UnloadSceneAsync(level1Name);
             SceneManager.UnloadSceneAsync("World");
             SceneManager.UnloadSceneAsync("IntroScene");
-
+            
+            FindAnyObjectByType<CalculateTimeSpent>().LevelDone();
             // Load next level
             SceneManager.LoadScene(level2Name);
+
         }
     }
 }
