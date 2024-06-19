@@ -13,7 +13,7 @@ public class LookAtTargetOnThreshold : MonoBehaviour
 
     void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         audioSource.clip = audioClip;
         //door = GameObject.FindGameObjectWithTag("RoomDoor").transform;
 

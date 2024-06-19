@@ -103,12 +103,12 @@ public class PlayerShooting : MonoBehaviour
 
     void ThrowingHandler() 
     {
-        if (FindAnyObjectByType<PlayerController>().IsDead()) { return; }
+        if (FindAnyObjectByType<PlayerController>().IsDead() || dynamiteCooldown == null) { return; }
         if (cooldownDynamiteTimer > 0)
         {
             cooldownDynamiteTimer -= Time.deltaTime;
         }
-        else if(Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt))
+        else if(Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt) || Input.GetKeyUp(KeyCode.Q))
         {
             GameObject newDynamite = Instantiate(dynamite, this.transform.position + transform.forward.normalized * .25f, this.transform.rotation, GameObject.FindGameObjectWithTag("Particles").transform);
             newDynamite.GetComponent<Rigidbody>().AddForce(

@@ -132,14 +132,14 @@ public class Revolver : MonoBehaviour, IGUN
         foreach (GameObject enemyObj in enemies)
         {
             Enemy enemy = enemyObj.GetComponent<Enemy>();
-            if (enemy != null)
+            if (enemy != null && enemy.enabled)
             {
                 enemy.TakeDamage(10);
                 enemy.canShoot = true; // Modify the canShoot property of the enemy script
             }
 
             EnemyImproved EI = enemyObj.GetComponent<EnemyImproved>();
-            if (EI != null)
+            if (EI != null && EI.enabled)
             {
                 EI.OnPlayerFire();
             }

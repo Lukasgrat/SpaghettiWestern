@@ -11,16 +11,19 @@ public class PlayAudioOnStairDescent : MonoBehaviour
 
     void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = fallAudioClip;
+        audioSource = gameObject.GetComponent<AudioSource>();
+        
     }
 
     void Update()
     {
-        if (transform.position.y < fallThreshold && !audioSource.isPlaying && !hasPlayed)
+        if (transform.position.y < fallThreshold && !hasPlayed)
         {
+            Debug.Log("here");
+            audioSource.Stop();
+            audioSource.clip = fallAudioClip;
             audioSource.Play();
-            
+            hasPlayed = true; 
             Invoke(methodName: "AfterAudio", audioSource.clip.length);
         }
     }
@@ -29,6 +32,5 @@ public class PlayAudioOnStairDescent : MonoBehaviour
     {
         step1.SetActive(false);
         step2.SetActive(true);
-        hasPlayed = true;
     }
 }

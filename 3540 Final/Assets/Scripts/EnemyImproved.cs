@@ -193,7 +193,10 @@ public class EnemyImproved : MonoBehaviour
         {
             playerAnimator.SetInteger("animState", 2);
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-            FindAnyObjectByType<EnemyManager>().enemyDied();
+            if (FindAnyObjectByType<EnemyManager>() != null)
+            {
+                FindAnyObjectByType<EnemyManager>().enemyDied();
+            }
         }
     }
 
@@ -277,7 +280,8 @@ public class EnemyImproved : MonoBehaviour
         if (Vector3.Distance(player.transform.position, transform.position) <= hearingRadius) 
         {
             FaceTarget(player.transform.position);
-            if (InSights(Physics.RaycastAll(transform.position, transform.forward,hearingRadius)).TryGetComponent(out PlayerController PC))
+            GameObject sightedGameObject = InSights(Physics.RaycastAll(transform.position, transform.forward, hearingRadius));
+            if (sightedGameObject != null && sightedGameObject.TryGetComponent(out PlayerController PC))
             {
                 currentState = FSMStates.shooting;
             }

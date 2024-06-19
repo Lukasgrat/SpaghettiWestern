@@ -32,6 +32,9 @@ public class Level1Enemy : MonoBehaviour
     public FSMStates currentState = FSMStates.idle;
     public GameObject[] wanderPoints;
     public GameObject gun;
+    //Due to additive scenes causing the start function to go horribly wrong, forced to write 
+    // a manual start
+    bool hasStarted = false;
 
     NavMeshAgent agent;
 
@@ -48,25 +51,30 @@ public class Level1Enemy : MonoBehaviour
     void Start()
     {
         curhealth = maxHealth;
+        hasStarted = true;
         //currentState = FSMStates.idle;
         player = GameObject.FindGameObjectWithTag("Player");
-        agent = GetComponent<NavMeshAgent>();
         if (wanderPoints.Length > 1)
         {
+            agent = GetComponent<NavMeshAgent>();
             currentState = FSMStates.patrol;
             FindNextPoint();
         }
         else 
         {
-            GetComponent<NavMeshAgent>().enabled = false;
+            TryGetComponent<NavMeshAgent>(out NavMeshAgent nav);
+            if (nav != null)
+            {
+                nav.enabled = false;
+            }
         }
         playerAnimator = GetComponent<Animator>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
-
         if (!cardGamePlayed) // Don't process enemy states until card game is played
             return;
 
@@ -97,6 +105,7 @@ public class Level1Enemy : MonoBehaviour
 
     void UpdateIdleState()
     {
+        Debug.Log(playerAnimator);
         playerAnimator.SetInteger("animState", 0);
         gun.SetActive(false);
         if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position,
