@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.AI;
 
 
 public class Level1Enemy : MonoBehaviour
@@ -19,17 +20,20 @@ public class Level1Enemy : MonoBehaviour
     GameObject player;
     public int maxHealth = 30;
     int curhealth = 30;
-    bool isDead = false;
+    public bool isDead = false;
     public bool canShoot = false; // New variable to control shooting
     public float shootingCooldown = 1;
     float shootingTime = 0;
     public float seeingRadius = 5;
     public float hearingRadius = 10;
+    public float fieldOfView = 45f;
     public Transform head;
     public string displayName;
-    public FSMStates currentState = FSMStates.idle; // Start in idle state
+    public FSMStates currentState = FSMStates.idle;
     public GameObject[] wanderPoints;
     public GameObject gun;
+
+    NavMeshAgent agent;
 
     Animator playerAnimator;
     Vector3 nextDestination;
@@ -46,10 +50,15 @@ public class Level1Enemy : MonoBehaviour
         curhealth = maxHealth;
         //currentState = FSMStates.idle;
         player = GameObject.FindGameObjectWithTag("Player");
-        if (wanderPoints.Length > 1) 
+        agent = GetComponent<NavMeshAgent>();
+        if (wanderPoints.Length > 1)
         {
             currentState = FSMStates.patrol;
             FindNextPoint();
+        }
+        else 
+        {
+            GetComponent<NavMeshAgent>().enabled = false;
         }
         playerAnimator = GetComponent<Animator>();
     }
@@ -88,10 +97,10 @@ public class Level1Enemy : MonoBehaviour
 
     void UpdateIdleState()
     {
-        gun.SetActive(false);
         playerAnimator.SetInteger("animState", 0);
+        gun.SetActive(false);
         if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position,
-            player.transform.position - head.transform.position)).CompareTag("Player") && !playerWonCardGame)
+            player.transform.position - head.transform.position)).CompareTag("Player")&& !playerWonCardGame)
         {
             currentState = FSMStates.shooting;
         }
@@ -100,24 +109,27 @@ public class Level1Enemy : MonoBehaviour
 
     void UpdatePatrolState()
     {
-        gun.SetActive(false);
         playerAnimator.SetInteger("animState", 1);
+        gun.SetActive(false);
 
         if(Vector3.Distance(transform.position, nextDestination) < 3)
         {
             FindNextPoint();
         }
-        else if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player")) 
+        else if (distanceToPlayer <= seeingRadius 
+        //&& InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player") 
+        && IsPlayerInClearFOV()) 
         {
             currentState = FSMStates.shooting;
         }
 
         FaceTarget(nextDestination);
-
+        agent.SetDestination(nextDestination);
         //transform.position = Vector3.MoveTowards(transform.position, nextDestination, 1.5f * Time.deltaTime);
 
     }
 
+    // Updates Shooting FSM State
     void UpdateShootState()
     {
 
@@ -133,8 +145,10 @@ public class Level1Enemy : MonoBehaviour
             head.transform.LookAt(player.transform.position);
         }
 
-        if ((Vector3.Distance(player.transform.position, transform.position) > seeingRadius
-            && !InSights(Physics.RaycastAll(head.transform.position, head.transform.forward, hearingRadius)).CompareTag("Player"))) 
+        if (Vector3.Distance(player.transform.position, transform.position) > seeingRadius
+            && !IsPlayerInClearFOV()
+            //!InSights(Physics.RaycastAll(head.transform.position, head.transform.forward, hearingRadius)).CompareTag("Player")) 
+        )
         {
             if (this.wanderPoints.Length > 1)
             {
@@ -179,6 +193,7 @@ public class Level1Enemy : MonoBehaviour
         }
     }
 
+    // Updates Dead FSM State
     void UpdateDeadState()
     {
         isDead = true;
@@ -186,16 +201,21 @@ public class Level1Enemy : MonoBehaviour
         {
             playerAnimator.SetInteger("animState", 2);
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            FindAnyObjectByType<EnemyManager>().enemyDied();
         }
     }
 
+    // Sets the enemy's destination to be the next wanderpoint in the array
     void FindNextPoint()
     {
         nextDestination = wanderPoints[currentDestinationIndex].transform.position;
 
         currentDestinationIndex = (currentDestinationIndex + 1) % wanderPoints.Length;
+
+        agent.SetDestination(nextDestination);
     }
 
+    // Rotates the Enemy to face the given target
     void FaceTarget(Vector3 target)
     {
         Vector3 directionToTarget = (target - transform.position).normalized;
@@ -264,7 +284,11 @@ public class Level1Enemy : MonoBehaviour
 
         if (Vector3.Distance(player.transform.position, transform.position) <= hearingRadius) 
         {
-            currentState = FSMStates.shooting;
+            FaceTarget(player.transform.position);
+            if (InSights(Physics.RaycastAll(transform.position, transform.forward,hearingRadius)).TryGetComponent(out PlayerController PC))
+            {
+                currentState = FSMStates.shooting;
+            }
         }
     }
 
@@ -277,6 +301,28 @@ public class Level1Enemy : MonoBehaviour
         TMP_Text text = GameObject.FindGameObjectWithTag("EnemyDisplayName").GetComponent<TMP_Text>();
         text.gameObject.GetComponent<CanvasGroup>().alpha = 1;
         text.text = displayName;
+    }
+
+    bool IsPlayerInClearFOV()
+    {
+        RaycastHit hit;
+        Vector3 directionToPlayer = player.transform.position - head.position;
+        
+        if (Vector3.Angle(directionToPlayer, head.forward) <= fieldOfView)
+        {
+            if(Physics.Raycast(head.position, directionToPlayer, out hit, seeingRadius))
+            {
+                if(hit.collider.CompareTag("Player"))
+                {
+                    print("Player in sight");
+                    return true;
+                }
+
+                return false;
+            }
+            return false;
+        }
+        return false;
     }
 
     public static void SetCardGamePlayed(bool win) // Function to signal the card game is played and result (win/lose)
