@@ -7,6 +7,7 @@ public class PlayAudioOnStairDescent : MonoBehaviour
     public float fallThreshold = 2.5f;
     public GameObject step1;
     public GameObject step2;
+    bool hasPlayed;
 
     void Start()
     {
@@ -16,9 +17,10 @@ public class PlayAudioOnStairDescent : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < fallThreshold && !audioSource.isPlaying)
+        if (transform.position.y < fallThreshold && !audioSource.isPlaying && !hasPlayed)
         {
             audioSource.Play();
+            
             Invoke(methodName: "AfterAudio", audioSource.clip.length);
         }
     }
@@ -27,5 +29,6 @@ public class PlayAudioOnStairDescent : MonoBehaviour
     {
         step1.SetActive(false);
         step2.SetActive(true);
+        hasPlayed = true;
     }
 }

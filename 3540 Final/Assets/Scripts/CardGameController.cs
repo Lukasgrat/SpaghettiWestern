@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class CardGameController : MonoBehaviour
@@ -11,8 +12,13 @@ public class CardGameController : MonoBehaviour
     public GameObject step2;
     public GameObject win;
     public GameObject lose;
+    public GameObject goodInstructions;
+    public GameObject badInstructions;
+    public GameObject salonDoor;
 
     private bool cardGamePlayed = false; // Flag to track card game state
+    public static bool cardGameInProgress = false;
+    bool isGoodCard;
     
 
     void Start()
@@ -30,7 +36,28 @@ public class CardGameController : MonoBehaviour
             if (Physics.Raycast(ray, out hit) && hit.collider.gameObject == cardTable)
             {
                 StartCardGame();
+                
             }
+        }
+
+        //When player presses escape so back to game mode and enemies start attacking if bad card
+        if (cardGameInProgress & Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (isGoodCard)
+            {
+                goodCardDisplay.SetActive(false); // Show good card display
+                Level1Enemy.SetCardGamePlayed(true);
+                win.SetActive(true);
+                goodInstructions.SetActive(false);
+            }
+            else
+            {
+                badCardDisplay.SetActive(false); // Show bad card display
+                Level1Enemy.SetCardGamePlayed(false); // Call SetCardGamePlayed on enemy (lose)
+                lose.SetActive(true);
+                badInstructions.SetActive(false);
+            }
+            salonDoor.SetActive(false);
         }
     }
 
@@ -39,20 +66,19 @@ public class CardGameController : MonoBehaviour
         cardGamePlayed = true; // Enter card game state
 
         // Determine card outcome (good or bad) randomly
-        bool isGoodCard = Random.Range(0, 2) == 0; // 50% chance of good card
+        isGoodCard = Random.Range(0, 2) == 0; // 50% chance of good card
         step2.SetActive(false);
+        cardGameInProgress = true;
 
         if (isGoodCard)
         {
             goodCardDisplay.SetActive(true); // Show good card display
-            Level1Enemy.SetCardGamePlayed(true);
-            win.SetActive(true);
+            goodInstructions.SetActive(true);
         }
         else
         {
             badCardDisplay.SetActive(true); // Show bad card display
-            Level1Enemy.SetCardGamePlayed(false); // Call SetCardGamePlayed on enemy (lose)
-            lose.SetActive(true);
+            badInstructions.SetActive(true);
         }
     }
 

@@ -91,7 +91,7 @@ public class Level1Enemy : MonoBehaviour
         gun.SetActive(false);
         playerAnimator.SetInteger("animState", 0);
         if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position,
-            player.transform.position - head.transform.position)).CompareTag("Player"))
+            player.transform.position - head.transform.position)).CompareTag("Player") && !playerWonCardGame)
         {
             currentState = FSMStates.shooting;
         }
