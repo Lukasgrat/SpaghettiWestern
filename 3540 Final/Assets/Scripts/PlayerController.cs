@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthSlider.value = health;
         controller = GetComponent<CharacterController>();
         shootingLogic = FindObjectOfType<PlayerShooting>();
         if (FindAnyObjectByType<IntroScene>() != null)
@@ -100,7 +101,7 @@ public class PlayerController : MonoBehaviour
         health -= damage;
         health = Mathf.Clamp(health, 0, 100);
         healthSlider.value = health;
-        if (health < 0)
+        if (health <= 0)
         {
             Debug.Log("They do be dead");
             health = 0;

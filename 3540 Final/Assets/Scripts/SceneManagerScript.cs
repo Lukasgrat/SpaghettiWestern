@@ -6,6 +6,7 @@ public class SceneManagerScript : MonoBehaviour
     public GameObject eventHandler;
     public void LoadScene(string sceneName)
     {
+        SceneManager.UnloadSceneAsync("IntroScene");
         eventHandler.SetActive(false);
         SceneManager.LoadScene(sceneName);
         
@@ -13,6 +14,7 @@ public class SceneManagerScript : MonoBehaviour
 
     public void LoadScene(int sceneIndex)
     {
+        SceneManager.UnloadSceneAsync("IntroScene");
         eventHandler.SetActive(false);
         SceneManager.LoadScene(sceneIndex);
         

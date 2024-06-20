@@ -9,7 +9,7 @@ public class CardGameController : MonoBehaviour
     public GameObject goodCardDisplay; // UI element for good card display
     public GameObject badCardDisplay;  // UI element for bad card display
 
-    public GameObject step2;
+    public GameObject step1;
     public GameObject win;
     public GameObject lose;
     public GameObject goodInstructions;
@@ -67,9 +67,8 @@ public class CardGameController : MonoBehaviour
 
         // Determine card outcome (good or bad) randomly
         isGoodCard = Random.Range(0, 2) == 0; // 50% chance of good card
-        step2.SetActive(false);
+        step1.SetActive(false);
         cardGameInProgress = true;
-        isGoodCard = false;
         if (isGoodCard)
         {
             goodCardDisplay.SetActive(true); // Show good card display

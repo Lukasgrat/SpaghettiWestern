@@ -50,11 +50,14 @@ public class IntroScene : MonoBehaviour
         }
         else
         {
+            SceneManager.UnloadSceneAsync("IntroScene");
+            
             // Deactivate the IntroScene GameObject
             gameObject.SetActive(false);
 
             // Load the first level additively
             eventHandler.SetActive(false);
+            
             SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
             
         }
