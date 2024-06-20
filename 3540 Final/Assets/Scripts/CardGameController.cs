@@ -46,14 +46,14 @@ public class CardGameController : MonoBehaviour
             if (isGoodCard)
             {
                 goodCardDisplay.SetActive(false); // Show good card display
-                Level1Enemy.SetCardGamePlayed(true);
+                EnemyImproved.SetCardGamePlayed(true);
                 win.SetActive(true);
                 goodInstructions.SetActive(false);
             }
             else
             {
                 badCardDisplay.SetActive(false); // Show bad card display
-                Level1Enemy.SetCardGamePlayed(false); // Call SetCardGamePlayed on enemy (lose)
+                EnemyImproved.SetCardGamePlayed(false); // Call SetCardGamePlayed on enemy (lose)
                 lose.SetActive(true);
                 badInstructions.SetActive(false);
             }
@@ -69,7 +69,7 @@ public class CardGameController : MonoBehaviour
         isGoodCard = Random.Range(0, 2) == 0; // 50% chance of good card
         step2.SetActive(false);
         cardGameInProgress = true;
-
+        isGoodCard = false;
         if (isGoodCard)
         {
             goodCardDisplay.SetActive(true); // Show good card display

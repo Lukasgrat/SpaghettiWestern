@@ -96,7 +96,7 @@ public class Level1Enemy : MonoBehaviour
                 break;
         }
         
-        if (curhealth <= 0)
+        if (curhealth <= 0 && currentState != FSMStates.dead)
         {
             currentState = FSMStates.dead;
         }
@@ -109,7 +109,7 @@ public class Level1Enemy : MonoBehaviour
         playerAnimator.SetInteger("animState", 0);
         gun.SetActive(false);
         if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position,
-            player.transform.position - head.transform.position)).CompareTag("Player")&& !playerWonCardGame)
+            player.transform.position - head.transform.position)).CompareTag("Player") && !cardGamePlayed && !playerWonCardGame)
         {
             currentState = FSMStates.shooting;
         }
@@ -126,7 +126,6 @@ public class Level1Enemy : MonoBehaviour
             FindNextPoint();
         }
         else if (distanceToPlayer <= seeingRadius 
-        //&& InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player") 
         && IsPlayerInClearFOV()) 
         {
             currentState = FSMStates.shooting;
@@ -134,7 +133,6 @@ public class Level1Enemy : MonoBehaviour
 
         FaceTarget(nextDestination);
         agent.SetDestination(nextDestination);
-        //transform.position = Vector3.MoveTowards(transform.position, nextDestination, 1.5f * Time.deltaTime);
 
     }
 
@@ -156,7 +154,6 @@ public class Level1Enemy : MonoBehaviour
 
         if (Vector3.Distance(player.transform.position, transform.position) > seeingRadius
             && !IsPlayerInClearFOV()
-            //!InSights(Physics.RaycastAll(head.transform.position, head.transform.forward, hearingRadius)).CompareTag("Player")) 
         )
         {
             if (this.wanderPoints.Length > 1)
@@ -209,7 +206,7 @@ public class Level1Enemy : MonoBehaviour
         if (playerAnimator.GetInteger("animState") != 2)
         {
             playerAnimator.SetInteger("animState", 2);
-            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
             FindAnyObjectByType<EnemyManager>().enemyDied();
         }
     }

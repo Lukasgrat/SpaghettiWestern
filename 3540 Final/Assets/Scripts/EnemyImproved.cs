@@ -33,16 +33,24 @@ public class EnemyImproved : MonoBehaviour
 
     NavMeshAgent agent;
 
-    Animator playerAnimator;
+    public Animator playerAnimator;
     Vector3 nextDestination;
     int currentDestinationIndex = 0;
     float distanceToPlayer;
+
+    //For Level 1 - set both to false in level1 inspecter scene
+    public bool gamePlayed = true;
+    public bool gameWon = true;
+    public static bool cardGamePlayed; // Flag to track card game completion
+    public static bool playerWonCardGame; // Flag to track card game winner
 
 
     // Start is called before the first frame update
     void Start()
     {
         curhealth = maxHealth;
+        playerWonCardGame = gameWon;
+        cardGamePlayed = gamePlayed;
         //currentState = FSMStates.idle;
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
@@ -66,6 +74,8 @@ public class EnemyImproved : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!cardGamePlayed) // Don't process enemy states until card game is played
+            return;
 
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
@@ -102,7 +112,7 @@ public class EnemyImproved : MonoBehaviour
         playerAnimator.SetInteger("animState", 0);
         gun.SetActive(false);
         if (distanceToPlayer <= seeingRadius && InSights(Physics.RaycastAll(head.transform.position,
-            player.transform.position - head.transform.position)).CompareTag("Player"))
+            player.transform.position - head.transform.position)).CompareTag("Player") && !playerWonCardGame)
         {
             currentState = FSMStates.shooting;
         }
@@ -126,7 +136,6 @@ public class EnemyImproved : MonoBehaviour
 
         FaceTarget(nextDestination);
         agent.SetDestination(nextDestination);
-        //transform.position = Vector3.MoveTowards(transform.position, nextDestination, 1.5f * Time.deltaTime);
 
     }
 
@@ -327,5 +336,11 @@ public class EnemyImproved : MonoBehaviour
             return false;
         }
         return false;
+    }
+
+    public static void SetCardGamePlayed(bool win) // Function to signal the card game is played and result (win/lose)
+    {
+        cardGamePlayed = true;
+        playerWonCardGame = win;
     }
 }

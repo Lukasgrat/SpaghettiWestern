@@ -234,6 +234,7 @@ MonoBehaviour:
   descriptionText1: {fileID: 205608677}
   descriptionText2: {fileID: 1133458623}
   descriptionText3: {fileID: 64532903}
+  eventHandler: {fileID: 358304580}
 --- !u!114 &35036625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4da35b9cd9abd24bae64468f94f331c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventHandler: {fileID: 358304580}
 --- !u!82 &35036626
 AudioSource:
   m_ObjectHideFlags: 0

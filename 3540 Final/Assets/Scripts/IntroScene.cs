@@ -9,6 +9,7 @@ public class IntroScene : MonoBehaviour
     public Text descriptionText1;
     public Text descriptionText2;
     public Text descriptionText3;
+    public GameObject eventHandler;
 
     private Vector3 initialPosition;
     private Vector3 targetPosition;
@@ -53,7 +54,9 @@ public class IntroScene : MonoBehaviour
             gameObject.SetActive(false);
 
             // Load the first level additively
-            SceneManager.LoadScene("Level1", LoadSceneMode.Additive); // Change "Level1" to your actual first level scene name
+            eventHandler.SetActive(false);
+            SceneManager.LoadScene("Level1", LoadSceneMode.Additive);
+            
         }
     }
 

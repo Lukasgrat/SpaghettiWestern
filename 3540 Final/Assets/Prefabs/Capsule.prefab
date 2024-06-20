@@ -180,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 5047822562829614206}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.58, z: 0.036}
+  m_LocalPosition: {x: 0, y: 1.082, z: 0.036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -259,7 +259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e0cc500f0c98a144b2a8e8dedbc5121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 500
   recoilDuration: 1
   recoilAmount: 30
   playerController: {fileID: 1391706332601899940}
@@ -511,6 +510,7 @@ MonoBehaviour:
   health: 100
   healthSlider: {fileID: 0}
   deathTimer: 2
+  deathText: {fileID: 0}
 --- !u!143 &3778170759812254872
 CharacterController:
   m_ObjectHideFlags: 0
@@ -532,7 +532,7 @@ CharacterController:
   serializedVersion: 3
   m_Height: 2
   m_Radius: 0.5
-  m_SlopeLimit: 30
+  m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
@@ -699,7 +699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6848211044832062260, guid: c61cf01f760d7a74083609a6a1072dde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6848211044832062260, guid: c61cf01f760d7a74083609a6a1072dde, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
