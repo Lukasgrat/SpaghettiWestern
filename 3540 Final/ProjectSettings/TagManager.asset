@@ -11,6 +11,7 @@ TagManager:
   - Particles
   - RoomDoor
   - EnemyWeapon
+  - EnemyCount
   layers:
   - Default
   - TransparentFX

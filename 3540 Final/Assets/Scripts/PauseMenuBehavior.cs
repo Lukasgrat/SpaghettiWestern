@@ -34,7 +34,11 @@ public class PauseMenuBehavior : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
+        GameObject enemiesLeft = GameObject.FindGameObjectWithTag("EnemyCount");
+        if (enemiesLeft != null)
+        {
+            enemiesLeft.GetComponent<CanvasGroup>().alpha = 0;
+        }
     }
 
     public void ResumeGame()
@@ -46,6 +50,11 @@ public class PauseMenuBehavior : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        GameObject enemiesLeft = GameObject.FindGameObjectWithTag("EnemyCount");
+        if (enemiesLeft != null)
+        {
+            enemiesLeft.GetComponent<CanvasGroup>().alpha = 1;
+        }
     }
 
     public void LoadMainMenu()

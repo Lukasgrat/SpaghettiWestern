@@ -56,6 +56,11 @@ public class EnemyImproved : MonoBehaviour
             GetComponent<NavMeshAgent>().enabled = false;
         }
         playerAnimator = GetComponent<Animator>();
+        GameObject gm = GameObject.FindGameObjectWithTag("EnemyCount");
+        if (gm != null && gm.TryGetComponent(out EnemyCounter counter)) 
+        {
+            counter.AddEnemy();
+        }
     }
 
     // Update is called once per frame
@@ -80,9 +85,14 @@ public class EnemyImproved : MonoBehaviour
                 break;
         }
         
-        if (curhealth <= 0)
+        if (curhealth <= 0 && currentState != FSMStates.dead)
         {
             currentState = FSMStates.dead;
+            GameObject gm = GameObject.FindGameObjectWithTag("EnemyCount");
+            if (gm != null && gm.TryGetComponent(out EnemyCounter counter))
+            {
+                counter.RemoveEnemy();
+            }
         }
 
     }
@@ -109,7 +119,6 @@ public class EnemyImproved : MonoBehaviour
             FindNextPoint();
         }
         else if (distanceToPlayer <= seeingRadius 
-        //&& InSights(Physics.RaycastAll(head.transform.position, player.transform.position)).CompareTag("Player") 
         && IsPlayerInClearFOV()) 
         {
             currentState = FSMStates.shooting;
@@ -139,7 +148,6 @@ public class EnemyImproved : MonoBehaviour
 
         if (Vector3.Distance(player.transform.position, transform.position) > seeingRadius
             && !IsPlayerInClearFOV()
-            //!InSights(Physics.RaycastAll(head.transform.position, head.transform.forward, hearingRadius)).CompareTag("Player")) 
         )
         {
             if (this.wanderPoints.Length > 1)
@@ -192,7 +200,7 @@ public class EnemyImproved : MonoBehaviour
         if (playerAnimator.GetInteger("animState") != 2)
         {
             playerAnimator.SetInteger("animState", 2);
-            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionY;
             if (FindAnyObjectByType<EnemyManager>() != null)
             {
                 FindAnyObjectByType<EnemyManager>().enemyDied();

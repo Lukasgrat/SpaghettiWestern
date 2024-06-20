@@ -27,6 +27,8 @@ public interface IGUN
     public bool CanHolster();
 
     public void UpdateAmmoText();
+
+    public bool CanThrowDynamite();
 }
 
 public class PlayerShooting : MonoBehaviour
@@ -108,7 +110,8 @@ public class PlayerShooting : MonoBehaviour
         {
             cooldownDynamiteTimer -= Time.deltaTime;
         }
-        else if(Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt) || Input.GetKeyUp(KeyCode.Q))
+        else if(currentGun.CanThrowDynamite() &&
+            (Input.GetKeyUp(KeyCode.LeftAlt) || Input.GetKeyUp(KeyCode.RightAlt) || Input.GetKeyUp(KeyCode.Q)))
         {
             GameObject newDynamite = Instantiate(dynamite, this.transform.position + transform.forward.normalized * .25f, this.transform.rotation, GameObject.FindGameObjectWithTag("Particles").transform);
             newDynamite.GetComponent<Rigidbody>().AddForce(

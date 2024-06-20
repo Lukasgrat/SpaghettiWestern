@@ -210,4 +210,11 @@ public class Rifle : MonoBehaviour, IGUN
         curState = Gunplay.Readied;
         coolDownTime = 0;
     }
+
+
+    public bool CanThrowDynamite()
+    {
+        return !isZooming;
+    
+    }
 }
